@@ -15,7 +15,7 @@ class WorkView(generic.ListView):
         """Return all relevant experiences"""
         return ExpPost.objects.filter(
             pub_date__lte=timezone.now()
-            )#.exclude(post_type='project').order_by('-work_date')
+            ).exclude(post_type='project')#.order_by('-work_date')
 
 class ProjectView(generic.ListView):
     template_name = 'pages/projects.html'

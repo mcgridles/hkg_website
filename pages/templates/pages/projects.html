@@ -1,4 +1,8 @@
 <!-- projects.html -->
-{% for project in project_post_list %}
-{% project.title %}
-{% endfor %}
+{% if project_list %}
+  {% for project in project_list %}
+    {{ project.title }}
+  {% endfor %}
+{% else %}
+  <p>No projects were found.</p>
+{% endif %}
