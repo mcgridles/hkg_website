@@ -1,0 +1,8 @@
+<!-- work.html -->
+{% if work_list %}
+  {% for work in work__list %}
+    {{ work.title }}
+  {% endfor %}
+{% else %}
+  <p>No posts were found.</p>
+{% endif %}
