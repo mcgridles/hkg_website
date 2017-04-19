@@ -13,12 +13,22 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+class ImageModel(models.Model):
+    title = models.CharField(max_length=50)
+    img = models.ImageField()
+
+    def __str__(self):
+        return self.title
+
 class ExpPost(models.Model):
     title = models.CharField(max_length=255)
+    position = models.CharField(max_length=255, null=True, blank=True)
     post_type = models.CharField(max_length=50, null=True)
     pub_date = models.DateTimeField('date published')
-    #work_date = models.DateField('timespan')
+    start_date = models.DateField('date work started', null=True)
+    end_date = models.DateField('date work ended', null=True, blank=True)
     description = models.TextField()
+    images = models.ManyToManyField(ImageModel)
 
     def __str__(self):
         return self.title
