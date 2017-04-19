@@ -26,7 +26,7 @@ class ExpPost(models.Model):
         return self.title
 
 class Image(models.Model):
-    post = models.ForeignKey(ExpPost)
+    post = models.ForeignKey(ExpPost, models.SET_NULL, null=True)
     title = models.CharField(max_length=50)
     img = models.ImageField()
 
@@ -34,7 +34,7 @@ class Image(models.Model):
         return self.title
 
 class Journal(models.Model):
-    post = models.ForeignKey(ExpPost)
+    post = models.ForeignKey(ExpPost, models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
     pub_date = models.DateTimeField('date published')
     author = models.CharField(max_length=50)
