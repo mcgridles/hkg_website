@@ -20,6 +20,8 @@ class ImageModel(models.Model):
     def __str__(self):
         return self.title
 
+#class Journal(models.Model):
+
 class ExpPost(models.Model):
     title = models.CharField(max_length=255)
     position = models.CharField(max_length=255, null=True, blank=True)
@@ -28,7 +30,7 @@ class ExpPost(models.Model):
     start_date = models.DateField('date work started', null=True)
     end_date = models.DateField('date work ended', null=True, blank=True)
     description = models.TextField()
-    images = models.ManyToManyField(ImageModel)
+    images = models.ManyToManyField(ImageModel, blank=True)
 
     def __str__(self):
         return self.title
