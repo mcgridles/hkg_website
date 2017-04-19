@@ -1,7 +1,17 @@
 <!-- projects.html -->
 {% if project_list %}
   {% for project in project_list %}
-    {{ project.title }}
+    <h2><a href="{% url 'pages:details' project.id %}">{{ project.title }}</a></h2>
+
+    {{ project.start_date|date:"M Y" }} -
+    {% if project.end_date %}
+      {{ project.end_date|date:"M Y" }}<br/>
+    {% else %}
+      Present<br/>
+    {% endif %}
+
+    {{ project.descriptio }}
+
   {% endfor %}
 {% else %}
   <p>No projects were found.</p>
