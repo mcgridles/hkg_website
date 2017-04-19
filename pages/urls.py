@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'pages'
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
+    #url(r'^$', views.index, name='index'),
     url(r'^work/$', views.WorkView.as_view(), name='work'),
     url(r'^projects/$', views.ProjectView.as_view(), name='projects'),
     url(r'^aboutMe/$', views.aboutMe, name='aboutMe'),
