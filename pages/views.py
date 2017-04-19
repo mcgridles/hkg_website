@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.utils import timezone
 
@@ -15,7 +14,7 @@ class WorkView(generic.ListView):
         """Return all relevant experiences"""
         return ExpPost.objects.filter(
             pub_date__lte=timezone.now()
-            ).exclude(post_type='project')#.order_by('-work_date')
+            ).exclude(post_type='project').order_by('-start_date')
 
 class ProjectView(generic.ListView):
     template_name = 'pages/projects.html'
@@ -25,7 +24,7 @@ class ProjectView(generic.ListView):
         """Return all relevant projects"""
         return ExpPost.objects.filter(
             pub_date__lte=timezone.now()
-            ).filter(post_type='project')#.order_by('-work_date')
+            ).filter(post_type='project').order_by('-start_date')
 
 class DetailView(generic.DetailView):
     model = ExpPost
