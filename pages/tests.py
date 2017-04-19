@@ -7,16 +7,19 @@ from django.utils import timezone
 
 from .models import Author, ExpPost
 
-def create_post(title, post_type, days):
+def create_post(title, post_type, days, start=-10):
     """
     Creates a post with the given 'title' of the given 'post_type' and published
     the given number of 'days' offset to now (negative for posts published in the past,
     positive for posts that have yet to be published).
     """
-    time = timezone.now() + datetime.timedelta(days=days)
-    return ExpPost.objects.create(title=title, post_type=post_type, pub_date=time)
+    pub_time = timezone.now() + datetime.timedelta(days=days)
+    start_time = timezone.now() + datetime.timedelta(days=start)
+    return ExpPost.objects.create(title=title, post_type=post_type,
+        pub_date=pub_time, start_date=start_time)
 
 class ExpPostViewTests(TestCase):
+    # ------------------ Work View ---------------------
     def test_work_view_with_no_posts(self):
         """
         If no work post exists, an appropriate message should be displayed.
@@ -85,6 +88,17 @@ class ExpPostViewTests(TestCase):
             ['<ExpPost: Work post>']
         )
 
+    def test_work_view_with_future_start_date(self):
+        """
+        Jobs that are expected to be started in the future should
+        not be posted until they are started.
+        """
+        create_post(title='Work post', post_type='work', days=-10, start=10)
+        response = self.client.get(reverse('pages:work'))
+        self.assertQuerysetEqual(response.context['work_list'], [])
+        self.assertContains(response, 'No posts were found.')
+
+    # ------------------ Project View -------------------------
     def test_project_view_with_no_posts(self):
         """
         If no project post exists, an appropriate message should be displayed.
@@ -151,6 +165,16 @@ class ExpPostViewTests(TestCase):
             response.context['project_list'],
             ['<ExpPost: Project post>']
         )
+
+    def test_project_view_with_future_start_date(self):
+        """
+        Projects that are expected to be started in the future should not
+        be posted until they are started.
+        """
+        create_post(title='Project post', post_type='project', days=-10, start=10)
+        response = self.client.get(reverse('pages:projects'))
+        self.assertQuerysetEqual(response.context['project_list'], [])
+        self.assertContains(response, 'No projects were found.')
 
 
 def create_author(name, age):
