@@ -14,6 +14,8 @@ class WorkView(generic.ListView):
         """Return all relevant experiences"""
         return ExpPost.objects.filter(
             pub_date__lte=timezone.now()
+            ).filter(
+            start_date__lte=timezone.now()
             ).exclude(post_type='project').order_by('-start_date')
 
 class ProjectView(generic.ListView):
@@ -24,6 +26,8 @@ class ProjectView(generic.ListView):
         """Return all relevant projects"""
         return ExpPost.objects.filter(
             pub_date__lte=timezone.now()
+            ).filter(
+            start_date__lte=timezone.now()
             ).filter(post_type='project').order_by('-start_date')
 
 class DetailView(generic.DetailView):
