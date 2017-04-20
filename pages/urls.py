@@ -3,6 +3,8 @@ from . import views
 
 app_name = 'pages'
 urlpatterns = [
+    # /pages/
+    url(r'^$', views.index, name='index'),
     # /pages/work/
     url(r'^work/$', views.WorkView.as_view(), name='work'),
     # /pages/work/#/
