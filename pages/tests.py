@@ -4,10 +4,36 @@ import datetime
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
+from unittest import skip, skipIf, skipUnless
 
-from .models import Author, ExpPost
+from .models import Author, ExpPost, Image, Journal
 
-def create_post(title, post_type, days, start=-10):
+DEBUG = False
+
+def create_author(name, age):
+    """
+    Creates a site author with the given 'name'
+    """
+    return Author.objects.create(name=name, age=age)
+
+class AuthorViewTests(TestCase):
+    def test_aboutMe_view_with_no_author(self):
+        """
+        If no author exists, an appropriate message should be displayed.
+        """
+        response = self.client.get(reverse('pages:aboutMe'))
+        self.assertEqual(response.status_code, 404)
+
+    def test_aboutMe_with_author(self):
+        """
+        Author should be displayed on the page.
+        """
+        name = 'Henry Gridley'
+        create_author(name=name, age=20)
+        response = self.client.get(reverse('pages:aboutMe'))
+        self.assertContains(response, name)
+
+def create_post(title, post_type, days=-1, start=-1):
     """
     Creates a post with the given 'title' of the given 'post_type' and published
     the given number of 'days' offset to now (negative for posts published in the past,
@@ -18,8 +44,7 @@ def create_post(title, post_type, days, start=-10):
     return ExpPost.objects.create(title=title, post_type=post_type,
         pub_date=pub_time, start_date=start_time)
 
-class ExpPostViewTests(TestCase):
-    # ------------------ Work View ---------------------
+class WorkPostViewTests(TestCase):
     def test_work_view_with_no_posts(self):
         """
         If no work post exists, an appropriate message should be displayed.
@@ -98,7 +123,7 @@ class ExpPostViewTests(TestCase):
         self.assertQuerysetEqual(response.context['work_list'], [])
         self.assertContains(response, 'No posts were found.')
 
-    # ------------------ Project View -------------------------
+class ProjectPostViewTests(TestCase):
     def test_project_view_with_no_posts(self):
         """
         If no project post exists, an appropriate message should be displayed.
@@ -176,26 +201,33 @@ class ExpPostViewTests(TestCase):
         self.assertQuerysetEqual(response.context['project_list'], [])
         self.assertContains(response, 'No projects were found.')
 
+class ImageModelTests(TestCase):
+    def test_post_with_no_images(self):
+        """
+        Posts with no images associated with them should return an empty Queryset.
+        """
+        create_post(title='Test post', post_type='work')
+        response = self.client.get(reverse('pages:work'))
+        self.assertQuerysetEqual(response.context['work_list'][0].image_set.all(), [])
 
-def create_author(name, age):
-    """
-    Creates a site author with the given 'name'
-    """
-    return Author.objects.create(name=name, age=age)
+    def test_post_with_image(self):
+        """
+        Posts with an image should not break the site.
+        More specific tests to come.
+        """
+        post = create_post(title='Test post', post_type='work')
+        post.image_set.create(title='Test image', img='static/pages/images/test.jpg')
+        response = self.client.get(reverse('pages:work'))
+        self.assertQuerysetEqual(
+            response.context['work_list'][0].image_set.all(),
+            ['<Image: Test image>']
+        )
 
-class AuthorViewTests(TestCase):
-    def test_aboutMe_view_with_no_author(self):
+# Test cases for miscellaneous views
+class PageViewTests(TestCase):
+    def test_index_view(self):
         """
-        If no author exists, an appropriate message should be displayed.
+        Front page should load without errors.
         """
-        response = self.client.get(reverse('pages:aboutMe'))
-        self.assertEqual(response.status_code, 404)
-
-    def test_aboutMe_with_author(self):
-        """
-        Author should be displayed on the page.
-        """
-        name = 'Henry Gridley'
-        create_author(name=name, age=20)
-        response = self.client.get(reverse('pages:aboutMe'))
-        self.assertContains(response, name)
+        response = self.client.get(reverse('pages:index'))
+        self.assertEqual(response.status_code, 200)
