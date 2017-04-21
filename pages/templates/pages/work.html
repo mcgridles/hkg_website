@@ -6,14 +6,14 @@
 
     {{ work.start_date|date:"M Y" }} -
     {% if work.end_date %}
-      {{ work.end_date|date:"M Y" }}<br/>
+      {{ work.end_date|date:"M Y" }}<br>
     {% else %}
       Present<br/>
     {% endif %}
-    
-    {{ work.description }}<br/>
+
+    {{ work.description }}<br>
   {% endfor %}
 
 {% else %}
-  <p>No posts were found.</p>
+  No posts were found.
 {% endif %}
