@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+# Holds information for the AboutMe page
 class Author(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
@@ -13,6 +14,7 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+# General post class - can be used for projects, work, volunteering, etc.
 class ExpPost(models.Model):
     title = models.CharField(max_length=255)
     position = models.CharField(max_length=255, null=True, blank=True)
@@ -25,6 +27,7 @@ class ExpPost(models.Model):
     def __str__(self):
         return self.title
 
+# Holds an image for a post
 class Image(models.Model):
     post = models.ForeignKey(ExpPost, models.SET_NULL, null=True)
     title = models.CharField(max_length=50)
@@ -36,6 +39,7 @@ class Image(models.Model):
     def aspect_ratio(self):
         return float(self.img.width) / float(self.img.height)
 
+# Journal/blog entries for a post
 class Journal(models.Model):
     post = models.ForeignKey(ExpPost, models.SET_NULL, null=True)
     title = models.CharField(max_length=255)

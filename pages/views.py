@@ -15,7 +15,7 @@ class WorkView(generic.ListView):
         return ExpPost.objects.filter(
             pub_date__lte=timezone.now()
             ).filter(start_date__lte=timezone.now()
-            ).exclude(post_type='project').order_by('-start_date')
+            ).filter(post_type='work').order_by('-start_date')
 
 class ProjectView(generic.ListView):
     template_name = 'pages/projects.html'
