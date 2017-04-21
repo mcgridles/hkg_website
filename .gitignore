@@ -7,6 +7,7 @@
 *.o
 *.so
 *.pyc
+*.sh
 
 # Packages #
 ############
@@ -37,4 +38,8 @@
 ehthumbs.db
 Thumbs.db
 
+# Custom files and folders #
+############################
 /media/
+access_database
+shutdown_database
