@@ -1,5 +1,6 @@
 <!-- details.html -->
-{% load mathfilters %}
+{% load mathfilters static %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}"/>
 
 <h1>{{ exppost.title }}</h1>
 {% if exppost.position %}
