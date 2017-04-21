@@ -216,14 +216,13 @@ class ImageModelTests(TestCase):
         More specific tests to come.
         """
         post = create_post(title='Test post', post_type='work')
-        post.image_set.create(title='Test image', img='static/pages/images/test.jpg')
+        post.image_set.create(title='Test image', img='test.jpg')
         response = self.client.get(reverse('pages:work'))
         self.assertQuerysetEqual(
             response.context['work_list'][0].image_set.all(),
             ['<Image: Test image>']
         )
 
-# Test cases for miscellaneous views
 class PageViewTests(TestCase):
     def test_index_view(self):
         """
@@ -231,3 +230,11 @@ class PageViewTests(TestCase):
         """
         response = self.client.get(reverse('pages:index'))
         self.assertEqual(response.status_code, 200)
+
+class ImageMethodTest(TestCase):
+    def test_aspect_ratio(self):
+        """
+        Returns the aspect ratio of a given image.
+        """
+        image = Image(title='Test image', img='test.jpg')
+        self.assertEqual(image.aspect_ratio(), 0.5622188905547226)
