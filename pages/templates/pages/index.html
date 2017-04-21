@@ -1,6 +1,11 @@
 <!-- index.html -->
+{% extends "pages/base.html" %}
 
-This is the front page of my website!
+{% block title %}Home{% endblock %}
 
-Check out some of my <a href="{% url 'pages:work' %}">work</a> experiences or
-any <a href="{% url 'pages:projects' %}">projects</a> I have done.
+{% block content %}
+  This is the front page of my website!
+
+  Check out some of my <a href="{% url 'pages:work' %}">work</a> experiences or
+  any <a href="{% url 'pages:projects' %}">projects</a> I have done.
+{% endblock %}

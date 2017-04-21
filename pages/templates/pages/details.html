@@ -1,31 +1,35 @@
 <!-- details.html -->
-{% load mathfilters static %}
-<link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}"/>
+{% extends "pages/base.html" %}
+{% load mathfilters %}
 
-<h1>{{ exppost.title }}</h1>
-{% if exppost.position %}
-  {{ exppost.position }}<br>
-{% endif %}
+{% block title %}{{ expost.title }}{% endblock %}
 
-{{ exppost.start_date|date:"M Y" }} -
-{% if exppost.end_date %}
-  {{ exppost.end_date|date:"M Y" }}<br>
-{% else %}
-  Present<br><br>
-{% endif %}
+{% block content %}
+  <h1>{{ exppost.title }}</h1>
+  {% if exppost.position %}
+    {{ exppost.position }}<br>
+  {% endif %}
 
-{{ exppost.description }}
+  {{ exppost.start_date|date:"M Y" }} -
+  {% if exppost.end_date %}
+    {{ exppost.end_date|date:"M Y" }}<br>
+  {% else %}
+    Present<br><br>
+  {% endif %}
 
-<h3>Images</h3>
-{% for image in exppost.image_set.all %}
-  <img src="{{ image.img.url }}" alt="{{ exppost.title }} image"
-    style="width:{{ image.aspect_ratio|mul:256 }};height:256px">
-{% endfor %}
-<br/>
+  {{ exppost.description }}
 
-<h3>Updates</h3>
-{% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
-  <strong>{{ journal.title }}</strong> - {{ journal.pub_date|date:"F d, Y" }}<br>
-  {{ journal.author }}<br>
-  {{ journal.text|linebreaks }}<br><br>
-{% endfor %}
+  <h3>Images</h3>
+  {% for image in exppost.image_set.all %}
+    <img src="{{ image.img.url }}" alt="{{ exppost.title }} image"
+      style="width:{{ image.aspect_ratio|mul:256 }};height:256px">
+  {% endfor %}
+  <br/>
+
+  <h3>Updates</h3>
+  {% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
+    <strong>{{ journal.title }}</strong> - {{ journal.pub_date|date:"F d, Y" }}<br>
+    {{ journal.author }}<br>
+    {{ journal.text|linebreaks }}<br><br>
+  {% endfor %}
+{% endblock %}

@@ -1,19 +1,25 @@
 <!-- work.html -->
-{% if work_list %}
-  {% for work in work_list %}
-    <h2><a href="{% url 'pages:details' work.id %}">{{ work.title }}</a></h2>
-    <h3>{{ work.position }}</h3>
+{% extends "pages/base.html" %}
 
-    {{ work.start_date|date:"M Y" }} -
-    {% if work.end_date %}
-      {{ work.end_date|date:"M Y" }}<br>
-    {% else %}
-      Present<br/>
-    {% endif %}
+{% block title %}Work{% endblock %}
 
-    {{ work.description }}<br>
-  {% endfor %}
+{% block content %}
+  {% if work_list %}
+    {% for work in work_list %}
+      <h2><a href="{% url 'pages:details' work.id %}">{{ work.title }}</a></h2>
+      <h3>{{ work.position }}</h3>
 
-{% else %}
-  No posts were found.
-{% endif %}
+      {{ work.start_date|date:"M Y" }} -
+      {% if work.end_date %}
+        {{ work.end_date|date:"M Y" }}<br>
+      {% else %}
+        Present<br/>
+      {% endif %}
+
+      {{ work.description }}<br>
+    {% endfor %}
+
+  {% else %}
+    No posts were found.
+  {% endif %}
+{% endblock %}

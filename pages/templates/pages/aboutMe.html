@@ -1,8 +1,13 @@
 <!-- aboutMe.html -->
+{% extends "pages/base.html" %}
 
-<h1>{{ author.name }}</h1>
-Age: {{ author.age }}<br>
-Major: {{ author.major }}<br>
-Email: {{ author.email }}<br>
+{% block title %}Henry{% endblock %}
 
-{{ author.bio }}
+{% block content %}
+  <h1>{{ author.name }}</h1>
+  Age: {{ author.age }}<br>
+  Major: {{ author.major }}<br>
+  Email: {{ author.email }}<br>
+
+  {{ author.bio }}
+{% endblock %}

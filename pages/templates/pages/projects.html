@@ -1,18 +1,24 @@
 <!-- projects.html -->
-{% if project_list %}
-  {% for project in project_list %}
-    <h2><a href="{% url 'pages:details' project.id %}">{{ project.title }}</a></h2>
+{% extends "pages/base.html" %}
 
-    {{ project.start_date|date:"M Y" }} -
-    {% if project.end_date %}
-      {{ project.end_date|date:"M Y" }}<br>
-    {% else %}
-      Present<br>
-    {% endif %}
+{% block title %}Projects{% endblock %}
 
-    {{ project.description|truncatechars:500|linebreaks }}
+{% block content %}
+  {% if project_list %}
+    {% for project in project_list %}
+      <h2><a href="{% url 'pages:details' project.id %}">{{ project.title }}</a></h2>
 
-  {% endfor %}
-{% else %}
-  No projects were found.
-{% endif %}
+      {{ project.start_date|date:"M Y" }} -
+      {% if project.end_date %}
+        {{ project.end_date|date:"M Y" }}<br>
+      {% else %}
+        Present<br>
+      {% endif %}
+
+      {{ project.description|truncatechars:500|linebreaks }}
+
+    {% endfor %}
+  {% else %}
+    No projects were found.
+  {% endif %}
+{% endblock %}

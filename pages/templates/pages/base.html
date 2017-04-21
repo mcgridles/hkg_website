@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+      <link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}"/>
+      <title>{% block title %}My amazing site{% endblock %}</title>
+  </head>
+
+  <body>
+    <div id="navbar">
+      {% block navbar %}
+      <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'pages:work' %}">Work</a></li>
+        <li><a href="{% url 'pages:projects' %}">Projects</a></li>
+        <li><a href="{% url 'pages:aboutMe' %}">About Me</a></li>
+        <li><a href="{% url 'pages:details' 7 %}">Site Details</a></li>
+      </ul>
+      {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
