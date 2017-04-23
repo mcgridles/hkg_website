@@ -1,11 +1,10 @@
-<!-- details.html -->
 {% extends "pages/base.html" %}
 {% load mathfilters %}
 
-{% block title %}{{ expost.title }}{% endblock %}
+{% block title %}{{ exppost.title }}{% endblock %}
 
 {% block content %}
-  <h1>{{ exppost.title }}</h1>
+  <h1 class="title">{{ exppost.title }}</h1>
   {% if exppost.position %}
     {{ exppost.position }}<br>
   {% endif %}
@@ -18,6 +17,10 @@
   {% endif %}
 
   {{ exppost.description }}
+
+  <div id="text">
+    Hello
+  </div>
 
   <h3>Images</h3>
   {% for image in exppost.image_set.all %}
