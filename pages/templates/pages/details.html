@@ -4,35 +4,43 @@
 {% block title %}{{ exppost.title }}{% endblock %}
 
 {% block content %}
-  <h1 class="title">{{ exppost.title }}</h1>
-  {% if exppost.position %}
-    {{ exppost.position }}<br>
-  {% endif %}
+  <h1 id="project-title">{{ exppost.title }}</h1>
 
-  {{ exppost.start_date|date:"M Y" }} -
-  {% if exppost.end_date %}
-    {{ exppost.end_date|date:"M Y" }}<br>
-  {% else %}
-    Present<br><br>
-  {% endif %}
-
-  {{ exppost.description }}
-
-  <div id="text">
-    Hello
+  <div id="project-position">
+    {% if exppost.position %}
+      {{ exppost.position }}<br>
+    {% endif %}
   </div>
 
-  <h3>Images</h3>
-  {% for image in exppost.image_set.all %}
-    <img src="{{ image.img.url }}" alt="{{ exppost.title }} image"
-      style="width:{{ image.aspect_ratio|mul:256 }};height:256px">
-  {% endfor %}
-  <br/>
+  <div id="project-dates">
+    {{ exppost.start_date|date:"F Y" }} -
+    {% if exppost.end_date %}
+      {{ exppost.end_date|date:"F Y" }}<br>
+    {% else %}
+      Present<br>
+    {% endif %}
+  </div>
 
-  <h3>Updates</h3>
+  <hr class="top-division">
+
+  <p style="margin-bottom:45px">{{ exppost.description }}</p>
+
+  <hr>
+  <div id="photobanner">
+    {% for image in exppost.image_set.all %}
+      <div class="slide">
+        <img id="myImg{{ image.id }}" src="{{ image.img.url }}"
+              alt="{{ exppost.title }} image" style="width:{{ image.aspect_ratio|mul:256 }};height:256px">
+      </div>
+    {% endfor %}
+  </div>
+  <hr>
+
+  <h2 id="heading">Updates</h2>
   {% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
-    <strong>{{ journal.title }}</strong> - {{ journal.pub_date|date:"F d, Y" }}<br>
-    {{ journal.author }}<br>
+    <em id="journal-title">{{ journal.title }}</em>
+    <span id="journal-date">{{ journal.pub_date|date:"F d, Y" }}</span><br>
+
     {{ journal.text|linebreaks }}<br><br>
   {% endfor %}
 {% endblock %}

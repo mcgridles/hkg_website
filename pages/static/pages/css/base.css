@@ -1,42 +1,123 @@
-body {margin: 0;}
+body {
+  margin: 0;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva,
+                Verdana, sans-serif;
+  background: #FFFFFF;
+}
 
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
   overflow: hidden;
-  background-color: #333;
+  background-color: #FFD500;
   position: fixed;
   top: 0;
   width: 100%;
 }
 
 li {
-  float: left;
+  float: right;
 }
 
 li a {
   display: block;
-  color: white;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 li a:hover:not(.active) {
-  background-color: #111;
+    background-color: #ffec8e;
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #FFFFFF;
 }
 
-.title {
+.logo {
+  display: block;
+  color: black;
+  text-align: center;
+  padding-top: 14px;
+  text-decoration: none;
+  float: left;
+
+}
+
+.li-end {
+  margin-right: 50px;
+}
+
+
+h1 {
+  text-align: center;
+  font-size: 60px;
+}
+
+#project-title {
+  margin-top: 75px;
+  margin-bottom: 5px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #bfc0c1;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.top-division {
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.content {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#project-position {
   text-align: center;
 }
 
-.text {
-  margin-top: 50px;
-  margin-left: 5px;
-  margin-right: 5px;
+#project-dates {
+  text-align: center;
+}
+
+#photobanner {
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+
+  overflow: scroll;
+  white-space:nowrap;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#photobanner .slide {
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#heading {
+  text-align: center;
+  font-size: 35px;
+}
+
+#journal-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#journal-date {
+  float: right;
+  margin-right: 5px
 }
