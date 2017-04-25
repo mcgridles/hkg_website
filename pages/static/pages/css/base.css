@@ -17,6 +17,10 @@ h2 {
   margin-top: 35px;
 }
 
+.heading h2 {
+  text-align: center;
+}
+
 hr {
   border: 0;
   border-top: 1px solid #bfc0c1;
