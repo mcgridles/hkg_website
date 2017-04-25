@@ -1,46 +1,57 @@
 {% extends "pages/base.html" %}
-{% load mathfilters %}
+{% load mathfilters static %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/details.css' %}" />
+{% endblock %}
 
 {% block title %}{{ exppost.title }}{% endblock %}
 
 {% block content %}
-  <h1 id="project-title">{{ exppost.title }}</h1>
+  <div id="top" class="top">
+    <h1 class="heading">{{ exppost.title }}</h1>
 
-  <div id="project-position">
-    {% if exppost.position %}
-      {{ exppost.position }}<br>
-    {% endif %}
+    <div style="text-align:center;">
+      {% if exppost.position %}
+        {{ exppost.position }}<br>
+      {% endif %}
+    </div>
+
+    <div style="text-align:center;">
+      {{ exppost.start_date|date:"F Y" }} -
+      {% if exppost.end_date %}
+        {{ exppost.end_date|date:"F Y" }}
+      {% else %}
+        Present
+      {% endif %}
+    </div>
+
+    <hr>
+
+    <p>{{ exppost.description }}</p>
   </div>
 
-  <div id="project-dates">
-    {{ exppost.start_date|date:"F Y" }} -
-    {% if exppost.end_date %}
-      {{ exppost.end_date|date:"F Y" }}<br>
-    {% else %}
-      Present<br>
-    {% endif %}
-  </div>
-
-  <hr class="top-division">
-
-  <p style="margin-bottom:45px">{{ exppost.description }}</p>
-
-  <hr>
   <div id="photobanner">
     {% for image in exppost.image_set.all %}
-      <div class="slide">
-        <img id="myImg{{ image.id }}" src="{{ image.img.url }}"
-              alt="{{ exppost.title }} image" style="width:{{ image.aspect_ratio|mul:256 }};height:256px">
-      </div>
+      <img id="myImg{{ image.id }}" src="{{ image.img.url }}"
+            alt="{{ exppost.title }} image" style="width:{{ image.aspect_ratio|mul:256 }};height:256px">
     {% endfor %}
   </div>
-  <hr>
 
-  <h2 id="heading">Updates</h2>
-  {% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
-    <em id="journal-title">{{ journal.title }}</em>
-    <span id="journal-date">{{ journal.pub_date|date:"F d, Y" }}</span><br>
+  <div id="journal">
+    <h2 class="heading">Updates</h2>
+    {% if exppost.journal_set.all %}
+      {% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
+        <p>
+          <em>{{ journal.title }}</em>
+          <span>{{ journal.pub_date|date:"F d, Y" }}</span>
 
-    {{ journal.text|linebreaks }}<br><br>
-  {% endfor %}
+          {{ journal.text|linebreaks }}
+          <hr>
+        </p>
+      {% endfor %}
+    {% else %}
+      <p>You are all up to date! Come back later for more information.</p>
+    {% endif %}
+  </div>
 {% endblock %}
