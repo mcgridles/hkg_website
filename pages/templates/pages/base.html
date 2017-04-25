@@ -4,6 +4,8 @@
   <head>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'pages/css/base.css' %}" />
+    <meta name="viewport" content="width=device-width">
+    {% block stylesheets %}{% endblock %}
     <title>{% block title %}Default title{% endblock %}</title>
   </head>
 
@@ -25,16 +27,16 @@
 
     <div>
       <ul id="navbar">
-        <li id="details" class="li-end"><a href="{% url 'pages:details' 7 %}">Site Details</a></li>
-        <li id="about"><a href="{% url 'pages:aboutMe' %}">About Me</a></li>
-        <li id="projects"><a href="{% url 'pages:projects' %}">Projects</a></li>
-        <li id="work"><a href="{% url 'pages:work' %}">Work</a></li>
-        <li id="home"><a href="{% url 'index' %}">Home</a></li>
-        <li id="logo" class="logo">Henry Gridley</li>
+        <li id="logo">Henry Gridley</li>
+        <li><a id="details" class="end" href="{% url 'pages:project_details' 7 %}">Site Details</a></li>
+        <li><a id="about" href="{% url 'pages:aboutMe' %}">About Me</a></li>
+        <li><a id="projects" href="{% url 'pages:projects' %}">Projects</a></li>
+        <li><a id="work" href="{% url 'pages:work' %}">Work</a></li>
+        <li><a id="home" href="{% url 'index' %}">Home</a></li>
       </ul>
     </div>
 
-    <div class="content">
+    <div id="content">
       {% block content %}{% endblock %}
     </div>
   </body>
