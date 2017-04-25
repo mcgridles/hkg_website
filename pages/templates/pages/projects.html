@@ -6,7 +6,7 @@
 {% block content %}
   {% if project_list %}
     {% for project in project_list %}
-      <h2><a href="{% url 'pages:details' project.id %}">{{ project.title }}</a></h2>
+      <h2><a href="{% url 'pages:project_details' project.id %}">{{ project.title }}</a></h2>
 
       {{ project.start_date|date:"M Y" }} -
       {% if project.end_date %}
