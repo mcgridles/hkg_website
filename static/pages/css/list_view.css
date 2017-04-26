@@ -1,3 +1,47 @@
-h2 .heading {
+div.heading h1 {
+  font-size: 3em;
   text-align: center;
+}
+
+div.heading hr {
+  margin: 40px 200px;
+}
+
+div.list {
+  margin: 10px 0px;
+  padding-top: 0px;
+  text-align: center;
+}
+
+div.list h2 a {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+}
+
+div.list a:hover {
+  filter: blur(3px) grayscale(100%);
+  opacity: 0.6;
+}
+
+div.list a:link {
+  color: #FFD500;
+}
+
+div.list a:visited {
+  color: #FFD500;
+}
+
+hr.list {
+  margin: 50px 600px;
+}
+
+p.list {
+  font-size: 2em;
+  margin: 10px 0px;
+  padding-top: 0px;
+  left: 28%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
 }
