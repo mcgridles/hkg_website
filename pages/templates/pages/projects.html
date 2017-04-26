@@ -1,24 +1,37 @@
 <!-- projects.html -->
 {% extends "pages/base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/list_view.css' %}" />
+{% endblock %}
 
 {% block title %}Projects{% endblock %}
 
 {% block content %}
+  <div class="heading">
+    <h1>Personal Projects</h1>
+    <hr>
+  </div>
+
   {% if project_list %}
     {% for project in project_list %}
-      <h2><a href="{% url 'pages:project_details' project.id %}">{{ project.title }}</a></h2>
+      <div class="list">
+        <h2><a href="{% url 'pages:project_details' project.id %}">{{ project.title }}</a></h2>
+        <p>
+          {{ project.start_date|date:"M Y" }} -
+          {% if project.end_date %}
+            {{ project.end_date|date:"M Y" }}<br>
+          {% else %}
+            Present<br>
+          {% endif %}
 
-      {{ project.start_date|date:"M Y" }} -
-      {% if project.end_date %}
-        {{ project.end_date|date:"M Y" }}<br>
-      {% else %}
-        Present<br>
-      {% endif %}
-
-      {{ project.description|truncatechars:500|linebreaks }}
-
+          {{ project.description|truncatewords:50|linebreaks }}
+        </p>
+      </div>
+      <hr class="list">
     {% endfor %}
   {% else %}
-    No projects were found.
+    <p class="list">No posts were found.</p>
   {% endif %}
 {% endblock %}

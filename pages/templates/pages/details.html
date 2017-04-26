@@ -43,7 +43,7 @@
     {% if exppost.journal_set.all %}
       {% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
         <p>
-          <em>{{ journal.title }}</em>
+          <em class="journaltitle">{{ journal.title }}</em>
           <span>{{ journal.pub_date|date:"F d, Y" }}</span>
 
           {{ journal.text|linebreaks }}
