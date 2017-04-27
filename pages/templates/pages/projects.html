@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/list_view.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/list_view.css' %}?{% now "U" %}" />
 {% endblock %}
 
 {% block title %}Projects{% endblock %}

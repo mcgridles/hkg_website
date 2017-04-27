@@ -2,7 +2,7 @@
 {% load mathfilters static %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/details.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/details.css' %}?{% now "U" %}" />
 {% endblock %}
 
 {% block title %}{{ exppost.title }}{% endblock %}

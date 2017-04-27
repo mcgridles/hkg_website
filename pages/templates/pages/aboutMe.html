@@ -1,13 +1,22 @@
 <!-- aboutMe.html -->
 {% extends "pages/base.html" %}
+{% load static %}
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/aboutMe.css' %}?{% now "U" %}" />
+{% endblock %}
 
 {% block title %}Henry{% endblock %}
 
 {% block content %}
-  <h1>{{ author.name }}</h1>
-  Age: {{ author.age }}<br>
-  Major: {{ author.major }}<br>
-  Email: {{ author.email }}<br>
+  <div class="heading">
+    <h1>{{ author.name }}</h1>
+    <hr>
+  </div>
+  <p class="info">
+    <strong>Age:</strong> {{ author.age }}<br>
+    <strong>Major:</strong> {{ author.major }}<br>
+    <
 
-  {{ author.bio }}
+    {{ author.bio }}
+  </p>
 {% endblock %}
