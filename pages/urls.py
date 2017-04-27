@@ -16,9 +16,4 @@ urlpatterns = [
     url(r'^projects/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='project_details'),
     # /pages/aboutMe/
     url(r'^aboutMe/$', views.aboutMe, name='aboutMe'),
-
-    # /pages/test/listview/
-    url(r'^test/listview/$', views.TestListView.as_view(), name='test_list'),
-    # /pages/test/detailview/
-    url(r'^test/detailview/$', views.TestDetailView.as_view(), name='test_detail')
 ]

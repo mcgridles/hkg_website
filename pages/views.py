@@ -39,16 +39,3 @@ def aboutMe(request):
     author = get_object_or_404(Author, pk=1)
     context = {'author': author}
     return render(request, 'pages/aboutMe.html', context)
-
-# Views for testing purposes - probably won't need
-class TestListView(generic.ListView):
-    template_name = 'pages/test_list.html'
-    context_object_name = 'test_list'
-
-    def get_queryset(self):
-        """Return test model"""
-        return ExpPost.objects.filter(post_type='test')
-
-class TestDetailView(generic.DetailView):
-    model = ExpPost
-    template_name = 'pages/test_detail.html'
