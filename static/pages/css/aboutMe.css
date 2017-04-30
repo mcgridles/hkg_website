@@ -1,3 +1,10 @@
-.heading {
-  font-size: 2em;
+div.heading {
+}
+
+div.heading h1 {
+  font-size: 3em;
+}
+
+div.heading hr {
+  margin: 40px 200px;
 }
