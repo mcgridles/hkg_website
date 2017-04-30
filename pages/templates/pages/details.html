@@ -39,7 +39,7 @@
   </div>
 
   <div id="journal">
-    <h2 class="heading">Updates</h2>
+    <h2 class="heading">Journal</h2>
     {% if exppost.journal_set.all %}
       {% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
         <p>
