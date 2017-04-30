@@ -1,6 +1,6 @@
 <!-- aboutMe.html -->
 {% extends "pages/base.html" %}
-{% load static %}
+{% load mathfilters static %}
 {% block stylesheets %}
   <link rel="stylesheet" type="text/css" href="{% static 'pages/css/aboutMe.css' %}?{% now "U" %}" />
 {% endblock %}
@@ -13,10 +13,66 @@
     <hr>
   </div>
   <p class="info">
-    <strong>Age:</strong> {{ author.age }}<br>
-    <strong>Major:</strong> {{ author.major }}<br>
-    <
+    <strong class="section">Info</strong><br>
+  </p>
+  <p class="info">
+    <strong>Age: </strong>{{ author.age }}<br>
+    <strong>Hometown: </strong>Wichita, KS<br>
+    <strong>School: </strong>Northeastern University<br>
+    <strong>Major: </strong>Electrical &amp; Computer Engineering<br>
+  </p>
 
+  <img id="profile" src="{{ author.picture.url }}"
+        alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:400 }};height:400px">
+  <br>
+  
+  <p class="skills">
+    <strong class="section">Skills</strong><br>
+  </p>
+  <p class="skills">
+    <em>Software</em>
+    <ul class="skills">
+      <li>AutoCAD</li>
+      <li>Solidworks</li>
+      <li>Fusion360</li>
+      <li>Creo</li>
+      <li>EagleCAD</li>
+      <li>Altium</li>
+      <li>Microsoft Office Suite</li>
+    </ul>
+  </p>
+  <p class="skills">
+    <em>Programming</em>
+    <ul class="skills">
+      <li>C</li>
+      <li>C++</li>
+      <li>Python</li>
+      <li>Linux Shell</li>
+      <li>Verilog HDL</li>
+      <li>Matlab</li>
+      <li>Simulink</li>
+      <li>HTML/CSS</li>
+      <li>Django</li>
+    </ul>
+  </p>
+  <p class="skills">
+    <em>Engineering</em>
+    <ul class="skills">
+      <li>Oscilloscope</li>
+      <li>Function Generator</li>
+      <li>Through-Hole &amp; Surface Mount Soldering</li>
+      <li>Circuit Design &amp; Analysis</li>
+      <li>3D Printing</li>
+      <li>Laser Cutting</li>
+      <li>Arduino</li>
+      <li>Teensy</li>
+      <li>CNC &amp; PCB Milling</li>
+      <li>Manufacturing Equipment (table saw, drill press, band saw, mill, lathe)</li>
+    </ul>
+  </p><br>
+
+  <p class="bio">
+    <strong class="section">Bio</strong><br><br>
     {{ author.bio }}
   </p>
 {% endblock %}

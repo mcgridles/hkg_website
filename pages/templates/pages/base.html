@@ -26,8 +26,8 @@
     </script>
 
     <div>
-      <ul id="navbar">
-        <li id="logo">Henry Gridley</li>
+      <ul class="navbar">
+        <li id="logo"><strong>Henry Gridley</strong></li>
         <li><a class="end" id="about" href="{% url 'pages:aboutMe' %}">About Me</a></li>
         <li><a id="projects" href="{% url 'pages:projects' %}">Projects</a></li>
         <li><a id="work" href="{% url 'pages:work' %}">Work</a></li>
@@ -37,6 +37,10 @@
 
     <div id="content">
       {% block content %}{% endblock %}
+    </div>
+
+    <div id="footer">
+      Henry Gridley (C) 2017
     </div>
   </body>
 </html>

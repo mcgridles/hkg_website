@@ -18,17 +18,17 @@ div.list h2 a {
   width: 100%;
 }
 
-div.list a:hover {
-  filter: blur(3px) grayscale(100%);
-  opacity: 0.6;
-}
-
 div.list a:link {
-  color: #FFD500;
+  color: black;
 }
 
 div.list a:visited {
+  color: black;
+}
+
+div.list a:hover {
   color: #FFD500;
+  text-shadow: 1px 1px grey;
 }
 
 hr.list {
