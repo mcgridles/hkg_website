@@ -1,11 +1,19 @@
 <!-- index.html -->
 {% extends "pages/base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/index.css' %}?{% now "U" %}" />
+{% endblock %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  This is the front page of my website!
+  <div class="left">
+    Hey I'm Henry
+  </div>
 
-  Check out some of my <a href="{% url 'pages:work' %}">work</a> experiences or
-  any <a href="{% url 'pages:projects' %}">projects</a> I have done.
+  <div class="right">
+    right content
+  </div>
 {% endblock %}
