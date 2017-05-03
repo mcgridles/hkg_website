@@ -27,12 +27,12 @@ div.list a:visited {
 }
 
 div.list a:hover {
-  color: #FFD500;
-  text-shadow: 1px 1px grey;
+  color: #91A8D0;
 }
 
 hr.list {
-  margin: 50px 600px;
+  max-width: 200px;
+  margin: 50px auto;
 }
 
 p.list {

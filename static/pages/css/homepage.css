@@ -1,0 +1,38 @@
+ul.skills {
+  list-style-type: none;
+}
+
+.section {
+  font-size: 1.5em;
+}
+
+#profile {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 0
+}
+
+@media screen and (min-width:749px) {
+  #profile {
+    left: 10%;
+    position: relative;
+  }
+
+  div #bio {
+    display: inline;
+    left: 630px;
+    max-width: 40%;
+    position: absolute;
+  }
+}
+
+@media screen and (max-width:750px) {
+  #profile {
+    display: block;
+    margin: auto;
+  }
+
+  div #bio {
+    display: block;
+    text-align: center;
+  }
+}

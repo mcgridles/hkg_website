@@ -1,14 +1,29 @@
 #top p {
   margin-bottom: 45px;
+  font-size: 1.15em;
 }
 
 .heading {
   text-align: center;
+  color: #91A8D0;
 }
 
-img {
+img:not(#logo) {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
+}
+
+em.journaltitle {
+  font-size: 1.35em;
+  font-weight: bold;
+}
+
+span.date {
+  float: right;
+}
+
+hr.divide {
+  max-width: 500px;
 }
 
 /* Image banner */
