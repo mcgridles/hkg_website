@@ -9,29 +9,15 @@
 {% block title %}Projects{% endblock %}
 
 {% block content %}
-  <div class="heading">
-    <h1>Personal Projects</h1>
-    <hr>
-  </div>
-
   {% if project_list %}
+  <main class="container">
     {% for project in project_list %}
       <div class="list">
         <h2><a href="{% url 'pages:project_details' project.id %}">{{ project.title }}</a></h2>
-        <p>
-          {{ project.start_date|date:"M Y" }} -
-          {% if project.end_date %}
-            {{ project.end_date|date:"M Y" }}<br>
-          {% else %}
-            Present<br>
-          {% endif %}
-
-          {{ project.description|truncatewords:50|linebreaks }}
-        </p>
       </div>
-      <hr class="list">
     {% endfor %}
+  </main>
   {% else %}
-    <p class="list">No posts were found.</p>
+    <p class="404">No posts were found.</p>
   {% endif %}
 {% endblock %}

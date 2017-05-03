@@ -1,0 +1,20 @@
+<!-- aboutMe.html -->
+{% extends "pages/base.html" %}
+{% load mathfilters static %}
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/homepage.css' %}?{% now "U" %}" />
+{% endblock %}
+
+{% block title %}Henry{% endblock %}
+
+{% block content %}
+  <div id="bio">
+    <p class="about">
+      <strong class="section">About</strong>
+      {{ author.bio|linebreaks }}
+    </p><br>
+  </div>
+
+  <img id="profile" src="{{ author.picture.url }}"
+        alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:450 }};height:450px">
+{% endblock %}
