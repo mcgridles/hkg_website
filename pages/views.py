@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.utils import timezone
 
-from .models import Author, ExpPost
+from .models import Author, ExpPost, Journal
 
 class WorkView(generic.ListView):
     template_name = 'pages/work.html'
@@ -33,9 +33,13 @@ class DetailView(generic.DetailView):
     template_name = 'pages/details.html'
 
 def index(request):
-    return render(request, 'pages/index.html')
+    journals = Journal.objects.filter(
+                pub_date__lte=timezone.now()
+                ).order_by('-pub_date')[:5]
+    context = {'journals': journals}
+    return render(request, 'pages/index.html', context)
 
-def aboutMe(request):
+def homepage(request):
     author = get_object_or_404(Author, pk=1)
     context = {'author': author}
-    return render(request, 'pages/aboutMe.html', context)
+    return render(request, 'pages/homepage.html', context)
