@@ -1,17 +1,25 @@
 body {
   background: #FFFFFF;
+  /*background-color: #91A8D0;*/
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva,
                 Verdana, sans-serif;
   font-size: 1em;
-  margin: 0;
-  margin-top: 80px;
+}
+
+#header {
+  text-align: center;
+}
+
+#logo {
+  display: block;
+  height: 110px;
+  margin: 20px auto;
+  width: 200px;
 }
 
 h1 {
   font-size: 4em;
-  margin-bottom: 5px;
-  padding-top: 5px;
-  text-align: center;
+  margin: 30px auto;
 }
 
 h2 {
@@ -24,7 +32,8 @@ hr {
   border-top: 1px solid #bfc0c1;
   display: block;
   height: 1px;
-  margin: 50px 200px;
+  margin: 40px auto;
+  max-width: 800px;
   padding: 0;
 }
 
@@ -36,100 +45,50 @@ p {
   max-width: 1000px;
 }
 
-em.journaltitle {
-  font-size: 1.35em;
+a {
+  text-decoration: none;
+}
+
+a:not(.active) {
+  transition: color .1s ease-in;
+}
+
+a:link:not(#home) {
+  color: #91A8D0;
+}
+
+a:visited:not(#home) {
+  color: #91A8D0;
+}
+
+a:hover:not(#home) {
+  color: #F7CAC9;
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: black;
+}
+
+span.nav {
   font-weight: bold;
 }
 
-span {
-  float: right;
-  margin-right: 6px;
-}
-
-/* Navbar */
-ul.navbar {
-  background-color: #FFD500;
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
-  padding-top: 0px;
-  padding-left: 20px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1
-}
-
-/* Standard navbar behavior */
-@media screen and (min-width:640px) {
-  ul.navbar li {
-    float: right;
-  }
-
-  /* Logo on navbar left */
-  #logo {
-    color: black;
-    display: block;
-    float: left;
-    padding: 18px 16px;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  /* Far right navigation tab */
-  ul.navbar .end {
-    padding-right: 40px;
-  }
-}
-
-/* Navbar behavior for small windows and mobile devices */
-@media screen and (max-width:639px) {
-  body {
-    margin-top: 0px;
-  }
-
-  #content {
-    margin: 0px 15px;
-  }
-
-  ul.navbar {
-    position: static;
-    padding-left: 0px;
-  }
-
-  ul.navbar li {
-    display: block;
-  }
-
-  #logo {
-    text-align: center;
-    padding-bottom: 15px;
-    padding-top: 20px;
-  }
-}
-
-ul.navbar li a {
-  color: black;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  padding: 18px 16px;
-}
-
-ul.navbar li a:hover {
-  background-color: #ffec8e;
-}
-
-/* Current navigation tab */
-.active {
-  color: white;
-}
-
 #footer {
-  bottom: 10px;
+  bottom: 15px;
   color: grey;
   opacity: 0.2;
-  position: fixed;
-  right: 10px;
-  text-align: center;
+  position: relative;
+  left: 85%;
+}
+
+#header a.active {
+  color: lightgrey;
 }
