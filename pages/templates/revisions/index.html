@@ -1,0 +1,31 @@
+<!-- index.html -->
+{% extends "pages/base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/index.css' %}?{% now "U" %}" />
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div class="left">
+    Hey I'm Henry
+  </div>
+
+  <div class="right">
+    <h2>Recent Updates</h2>
+    {% for journal in journals %}
+      <p class="journal">
+        <strong>{{ journal.title }}</strong>
+        <span>{{ journal.pub_date|date:"F d, Y" }}</span><br>
+        <span>{{ journal.text|truncatewords:50|linebreaks }}</span>
+        {% if journal.post.post_type == "work" %}
+          <a href="{% url 'pages:work_details' journal.post.id %}">Read More</a>
+        {% elif journal.post.post_type == "project" %}
+          <a href="{% url 'pages:project_details' journal.post.id %}">Read More</a>
+        {% endif %}
+      </p>
+    {% endfor %}
+  </div>
+{% endblock %}

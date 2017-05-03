@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'pages/css/base.css' %}?{% now "U" %}" />
+    <meta name="viewport" content="width=device-width">
+    {% block stylesheets %}{% endblock %}
+    <title>{% block title %}Default title{% endblock %}</title>
+  </head>
+
+  <body>
+    <script>
+      $(function() {
+        var loc = window.location.pathname;
+        if(/work/.test(loc)) {
+          $('#work').addClass('active');
+        } else if(/projects/.test(loc)) {
+          $('#projects').addClass('active');
+        } else {
+          $('#home').addClass('active');
+        }
+      });
+    </script>
+
+    <div>
+      <ul class="navbar">
+        <li id="logo"><strong>Henry Gridley</strong></li>
+        <li><a class="end" id="projects" href="{% url 'pages:projects' %}">Projects</a></li>
+        <li><a id="work" href="{% url 'pages:work' %}">Work</a></li>
+        <li><a id="home" href="{% url 'home' %}">Home</a></li>
+      </ul>
+    </div>
+
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+
+    <div id="footer">
+      Henry Gridley (C) 2017
+    </div>
+  </body>
+</html>
