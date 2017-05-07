@@ -14,7 +14,7 @@ class JournalInline(admin.StackedInline):
 
 class ExpPostAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,  {'fields': ['title', 'position', 'description']}),
+        (None,  {'fields': ['title', 'position', 'description', 'marquee']}),
         ('Date information', {'fields': ['start_date', 'end_date']}),
         ('Admin information', {'fields': ['post_type', 'pub_date']}),
     ]

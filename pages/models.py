@@ -25,6 +25,7 @@ class ExpPost(models.Model):
     start_date = models.DateField('date work started', null=True)
     end_date = models.DateField('date work ended', null=True, blank=True)
     description = models.TextField()
+    marquee = models.ImageField(null=True)
 
     def __str__(self):
         return self.title
