@@ -13,7 +13,10 @@
   <main class="container">
     {% for project in project_list %}
       <div class="list">
-        <h2><a href="{% url 'pages:project_details' project.id %}">{{ project.title }}</a></h2>
+        <a href="{% url 'pages:project_details' project.id %}">
+          <img class="marquee" src="{{ project.marquee.url }}">
+          <span class=img_description>{{ project.title }}</span>
+        </a>
       </div>
     {% endfor %}
   </main>
