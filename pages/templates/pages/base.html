@@ -18,7 +18,7 @@
           $('#work').addClass('active');
         } else if(/projects/.test(loc)) {
           $('#projects').addClass('active');
-        } else {
+        } else if(/contact/.test(loc)) {
           $('#contact').addClass('active');
         }
       });
@@ -31,7 +31,7 @@
       <span class="nav">
         <a id="work" href="{% url 'pages:work' %}">Work</a>  |
         <a id="projects" href="{% url 'pages:projects' %}">Projects</a>  |
-        <a id="contact" href="{% url 'pages:home' %}">Contact</a>
+        <a id="contact" href="{% url 'contact' %}">Contact</a>
       </span>
       <hr>
     </div>
