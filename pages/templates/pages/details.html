@@ -31,8 +31,23 @@
 
   <div id="photobanner">
     {% for image in exppost.image_set.all %}
-      <img id="myImg{{ image.id }}" src="{{ image.img.url }}"
+      <img class="banner-img" src="{{ image.img.url }}"
             alt="{{ exppost.title }} image" style="width:{{ image.aspect_ratio|mul:256 }};height:256px">
+
+      <!-- The modal -->
+      <div class="modal">
+        <!-- Close button -->
+        <span class="close"
+        onclick="document.getElementsByClassName('modal').style.display='none'">&times;</span>
+
+        <!-- Modal content (the image) -->
+        <img class="modal-img">
+
+        <!-- Modal caption (image text) -->
+        <div class="caption"></div>
+      </div>
+
+      <script src="{% static 'pages/js/img_modal.js' %}"></script>
     {% endfor %}
   </div>
 
