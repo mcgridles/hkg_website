@@ -10,47 +10,25 @@ from django.template.loader import get_template
 from .models import Author, ExpPost, Journal
 from pages.forms import ContactForm
 
-class WorkView(generic.ListView):
+class ListView(generic.ListView):
     template_name = 'pages/work.html'
-    context_object_name = 'work_list'
+    context_object_name = 'post_list'
 
     def get_queryset(self):
         """Return all relevant experiences"""
         return ExpPost.objects.filter(
             pub_date__lte=timezone.now()
             ).filter(start_date__lte=timezone.now()
-            ).filter(post_type='work').order_by('-start_date')
-
-class ProjectView(generic.ListView):
-    template_name = 'pages/projects.html'
-    context_object_name = 'project_list'
-
-    def get_queryset(self):
-        """Return all relevant projects"""
-        return ExpPost.objects.filter(
-            pub_date__lte=timezone.now()
-            ).filter(start_date__lte=timezone.now()
-            ).filter(post_type='project').order_by('-start_date')
+            ).order_by('-start_date')
 
 class DetailView(generic.DetailView):
     model = ExpPost
     template_name = 'pages/details.html'
 
-def index(request):
-    journals = Journal.objects.filter(
-                pub_date__lte=timezone.now()
-                ).order_by('-pub_date')[:5]
-    context = {'journals': journals}
-    return render(request, 'pages/index.html', context)
-
 def homepage(request):
-    author = get_object_or_404(Author, pk=1)
+    author = get_object_or_404(Author)
     context = {'author': author}
     return render(request, 'pages/homepage.html', context)
-
-def contact_submit(request):
-    context = {}
-    return render(request, 'pages/contact_submit.html', context)
 
 def contact(request):
     form_class = ContactForm
@@ -83,3 +61,7 @@ def contact(request):
             return redirect('contact_submit')
 
     return render(request, 'pages/contact.html', {'form': form_class})
+
+def contact_submit(request):
+    context = {}
+    return render(request, 'pages/contact_submit.html', context)
