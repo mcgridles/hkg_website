@@ -11,49 +11,54 @@
   <div id="top">
     <h1 class="heading">{{ exppost.title }}</h1>
 
-    <div style="text-align:center;">
+    <p style="text-align:center;">
       {% if exppost.position %}
-        {{ exppost.position }}<br>
+        <strong>{{ exppost.position }}</strong><br>
       {% endif %}
-    </div>
 
-    <div style="text-align:center;">
       {{ exppost.start_date|date:"F Y" }} -
       {% if exppost.end_date %}
         {{ exppost.end_date|date:"F Y" }}
       {% else %}
         Present
       {% endif %}
-    </div>
+    </p>
 
     <p>{{ exppost.description|linebreaks }}</p>
   </div>
 
-  <div id="photobanner">
+  <!-- Lightbox -->
+  <div class="row">
     {% for image in exppost.image_set.all %}
-      <img class="banner-img" src="{{ image.img.url }}"
-            alt="{{ exppost.title }} image" style="width:{{ image.aspect_ratio|mul:256 }};height:256px">
-
-      <!-- The modal -->
-      <div class="modal">
-        <!-- Close button -->
-        <span class="close"
-        onclick="document.getElementsByClassName('modal').style.display='none'">&times;</span>
-
-        <!-- Modal content (the image) -->
-        <img class="modal-img">
-
-        <!-- Modal caption (image text) -->
-        <div class="caption"></div>
-      </div>
-
-      <script src="{% static 'pages/js/img_modal.js' %}"></script>
+      <img class="column"
+           src="{{ image.img.url }}"
+           alt="{{ image.title }}"
+           style="width:{{ image.aspect_ratio|mul:256 }};height:256px"
+           onclick="openModal();currentSlide({{ forloop.counter }})">
     {% endfor %}
   </div>
 
+  <div id="myModal" class="modal">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      {% for image in exppost.image_set.all %}
+        <img class="mySlides" src="{{ image.img.url }}" alt="{{ image.title }}">
+        <p class="caption">Test</p>
+      {% endfor %}
+
+      {% if exppost.image_set.all|length > 1 %}
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <script src="{% static 'pages/js/lightbox.js' %}?{% now "U" %}"></script>
+
+  <!-- Journals -->
   <div id="journal">
-    <h2 class="heading">Journal</h2>
     {% if exppost.journal_set.all %}
+      <h2 class="heading">Journal</h2>
       {% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
         <p>
           <em class="journaltitle">{{ journal.title }}</em>
@@ -63,8 +68,6 @@
           <hr class="divide">
         </p>
       {% endfor %}
-    {% else %}
-      <p>You are all up to date! Come back later for more information.</p>
     {% endif %}
   </div>
 {% endblock %}

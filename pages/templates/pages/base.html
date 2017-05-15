@@ -16,21 +16,21 @@
         var loc = window.location.pathname;
         if(/work/.test(loc)) {
           $('#work').addClass('active');
-        } else if(/projects/.test(loc)) {
-          $('#projects').addClass('active');
         } else if(/contact/.test(loc)) {
           $('#contact').addClass('active');
+        } else {
+          $('#home').addClass('active');
         }
       });
     </script>
 
     <div id="header">
-      <a id="home" href="{% url 'home' %}">
+      <a href="{% url 'home' %}">
         <img id="logo" src="{% static 'pages/img/HKG.png' %}" alt="HKG">
       </a>
       <span class="nav">
+        <a id="home" href="{% url 'home' %}">Home</a>  |
         <a id="work" href="{% url 'pages:work' %}">Work</a>  |
-        <a id="projects" href="{% url 'pages:projects' %}">Projects</a>  |
         <a id="contact" href="{% url 'contact' %}">Contact</a>
       </span>
       <hr>
