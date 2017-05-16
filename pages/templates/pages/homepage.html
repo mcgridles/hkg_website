@@ -9,12 +9,13 @@
 
 {% block content %}
   <div id="bio">
-    <p class="about">
+    <p>
       <strong class="section">About</strong>
       {{ author.bio|linebreaks }}
-    </p><br>
+    </p>
+    <button class="button">Resume</button>
   </div>
 
   <img id="profile" src="{{ author.picture.url }}"
-        alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:450 }};height:450px">
+        alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:400 }};height:400px">
 {% endblock %}

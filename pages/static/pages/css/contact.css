@@ -1,0 +1,10 @@
+.form,
+.wrapper {
+  text-align: center;
+}
+
+a.projects:link,
+a.projects:visited,
+a.projects:hover {
+  color: #91A8D0;
+}

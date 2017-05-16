@@ -7,11 +7,6 @@ body.modal-open {
   margin-bottom: 35px;
 }
 
-.heading {
-  color: #91A8D0;
-  text-align: center;
-}
-
 img:not(#logo) {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
@@ -46,11 +41,6 @@ a.next:not(.active) {
   width: 100%;
 }
 
-.column:hover {
-  filter: blur(1px);
-  transition: 0.2s ease-in;
-}
-
 /* The Modal (background) */
 .modal {
   background-color: black;
@@ -82,14 +72,16 @@ a.next:not(.active) {
   top: 10px;
 }
 
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
   color: #F7CAC9;
   cursor: pointer;
   text-decoration: none;
 }
 
 /* Next & previous buttons */
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -110,7 +102,8 @@ a.next:not(.active) {
   border-radius: 3px 0 0 3px;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -121,18 +114,8 @@ a.next:not(.active) {
 }
 
 .caption-container {
+  text-align: center;
   background-color: black;
-  color: white;
   padding: 2px 16px;
-  text-align: center;
-}
-
-.caption {
-  color: white;
-  margin-bottom: 0;
-  text-align: center;
-}
-
-#test {
   color: white;
 }
