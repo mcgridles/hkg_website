@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import get_template
+from django.contrib import messages
 
 from .models import Author, ExpPost, Journal
 from pages.forms import ContactForm
@@ -58,7 +59,8 @@ def contact(request):
                 headers = {'Reply-To': contact_email }
             )
             email.send()
-            return redirect('contact_submit')
+            messages.success(request, 'Thank you! Your email has been sent')
+            return redirect('contact')
 
     return render(request, 'pages/contact.html', {'form': form_class})
 
