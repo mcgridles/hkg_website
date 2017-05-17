@@ -1,8 +1,6 @@
 body {
   background: #FFFFFF;
-  /*background-color: #91A8D0;*/
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva,
-                Verdana, sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1em;
 }
 
@@ -18,11 +16,18 @@ body {
 }
 
 h1 {
+  font-family: 'Playfair Display', serif;
   font-size: 4em;
   margin: 30px auto;
 }
 
+.heading {
+  color: #91A8D0;
+  text-align: center;
+}
+
 h2 {
+  font-family: 'Playfair Display', serif;
   font-size: 2em;
   margin-top: 35px;
 }
@@ -45,6 +50,11 @@ p {
   max-width: 1000px;
 }
 
+em,
+strong {
+  font-family: 'Playfair Display', serif;
+}
+
 a {
   text-decoration: none;
 }
@@ -53,26 +63,23 @@ a:not(.active) {
   transition: color .1s ease-in;
 }
 
-a:link:not(#home) {
+a.home:link,
+a.work:link,
+a.contact:link,
+a.home:visited,
+a.work:visited,
+a.contact:visited {
   color: #91A8D0;
 }
 
-a:visited:not(#home) {
-  color: #91A8D0;
-}
-
-a:hover:not(#home) {
+a.home:hover,
+a.work:hover,
+a.contact:hover {
   color: #F7CAC9;
 }
 
-a:link {
-  color: black;
-}
-
-a:visited {
-  color: black;
-}
-
+a:link,
+a:visited,
 a:hover {
   color: black;
 }
