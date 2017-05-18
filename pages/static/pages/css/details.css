@@ -3,17 +3,24 @@ body.modal-open {
 }
 
 #top p {
-  font-size: 1.15em;
+  font-family: 'Playfair Display', serif;
+  font-size: 1em;
   margin-bottom: 35px;
+}
+
+span.workdate {
+  font-family: 'Raleway', sans-serif;
 }
 
 img:not(#logo) {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
 }
 
 em.journaltitle {
-  font-size: 1.35em;
+  font-size: 1.75em;
   font-weight: bold;
 }
 
@@ -37,8 +44,13 @@ a.next:not(.active) {
   margin-left: 0px;
   margin-right: 0px;
   overflow: scroll;
+  text-align: center;
   white-space:nowrap;
   width: 100%;
+}
+
+.column {
+  margin-right: 5px;
 }
 
 /* The Modal (background) */
@@ -57,9 +69,10 @@ a.next:not(.active) {
 
 /* Modal Content (Image) */
 .modal-content {
-  margin: auto;
+  margin: 0 auto 75px;
   max-width: 1200px;
   position: relative;
+  vertical-align: middle;
   width: 90%;
 }
 
@@ -97,6 +110,13 @@ a.next:not(.active) {
   -webkit-user-select: none;
 }
 
+a.prev:link,
+a.prev:visited,
+a.next:link,
+a.next:visited {
+  color: white;
+}
+
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
@@ -105,6 +125,7 @@ a.next:not(.active) {
 .prev:hover,
 .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
+  color: white;
 }
 
 .mySlides {
