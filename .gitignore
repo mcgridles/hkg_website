@@ -44,3 +44,7 @@ Thumbs.db
 access_database
 shutdown_database
 local_settings.py
+/static/pages/img
+/static/pages/files
+/pages/static/pages/img/
+/pages/static/pages/files/
