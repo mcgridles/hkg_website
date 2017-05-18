@@ -1,6 +1,6 @@
 body {
   background: #FFFFFF;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1em;
 }
 
@@ -16,9 +16,9 @@ body {
 }
 
 h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 4em;
-  margin: 30px auto;
+  margin: 30px auto 0;
 }
 
 .heading {
@@ -27,7 +27,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2em;
   margin-top: 35px;
 }
@@ -44,15 +44,15 @@ hr {
 
 p {
   display: block;
-  line-height: 200%;
+  line-height: 120%;
   margin: 0 auto;
   margin-bottom: 25px;
-  max-width: 1000px;
+  max-width: 900px;
 }
 
 em,
 strong {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 a {
