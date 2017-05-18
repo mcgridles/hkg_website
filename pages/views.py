@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 import os
-from datetime import datetime
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
@@ -41,9 +40,10 @@ def contact(request):
         form = form_class(data=request.POST)
 
         if form.is_valid():
-            contact_name = request.POST.get('contact_name', '')
-            contact_email = request.POST.get('contact_email', '')
-            form_content = request.POST.get('content', '')
+            contact_name = form.cleaned_data['contact_name']
+            contact_email = form.cleaned_data['contact_email']
+            form_subject = form.cleaned_data['subject']
+            form_content = form.cleaned_data['content']
 
             # Email the profile with the
             # contact information
@@ -53,9 +53,7 @@ def contact(request):
                 'form_content': form_content,
             }
             content = template.render(context)
-            today = datetime.now()
-            today = today.strftime('%m/%d/%Y')
-            subject = 'New Site Email - ' + str(today)
+            subject = 'New Site Email - ' + form_subject
             try:
                 send_mail(subject,
                           content,
