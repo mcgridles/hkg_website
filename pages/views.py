@@ -1,15 +1,18 @@
 from __future__ import unicode_literals
+import os
+from datetime import datetime
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.utils import timezone
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from django.template import Context
 from django.template.loader import get_template
 from django.contrib import messages
 
-from .models import Author, ExpPost, Journal
+from pages.models import Author, ExpPost, Journal
 from pages.forms import ContactForm
+from hkg_website.local_settings import HKG_EMAIL
 
 class ListView(generic.ListView):
     template_name = 'pages/work.html'
@@ -50,17 +53,20 @@ def contact(request):
                 'form_content': form_content,
             }
             content = template.render(context)
-
-            email = EmailMessage(
-                "New contact form submission",
-                content,
-                "Your website" + '',
-                ['youremai@gmail.com'],
-                headers = {'Reply-To': contact_email }
-            )
-            email.send()
-            messages.success(request, 'Thank you! Your email has been sent')
-            return redirect('contact')
+            today = datetime.now()
+            today = today.strftime('%m/%d/%Y')
+            subject = 'New Site Email - ' + str(today)
+            try:
+                send_mail(subject,
+                          content,
+                          None,
+                          [HKG_EMAIL],
+                          fail_silently=False)
+                messages.success(request, 'Thank you! Your email has been sent')
+                return redirect('contact')
+            except:
+                messages.error(request, 'Sorry, we were unable to send your email.')
+                return redirect('contact')
 
     return render(request, 'pages/contact.html', {'form': form_class})
 
