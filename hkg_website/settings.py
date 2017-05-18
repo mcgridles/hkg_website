@@ -22,13 +22,28 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'www.henrygridley.me',
+    'www.hkg_website.herokuapp.com',
+]
 
+ADMINS = (('Webmaster', HKG_EMAIL), ('Administrator', HKG_EMAIL))
+MANAGERS = ADMINS
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 3600
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+X_FRAME_OPTIONS = 'DENY'
 
 # Application definition
-
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'django.contrib.admin',
@@ -78,8 +93,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hkg_site_db',
-        'USER': 'hgridley',
-        'PASSWORD': 'hkgwebsitedb',
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
         'HOST': 'localhost',
         'PORT': '3306',
         'TIME_ZONE': 'US/Eastern',
