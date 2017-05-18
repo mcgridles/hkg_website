@@ -8,15 +8,15 @@
 
 {% block content %}
   {% if messages %}
-    <div class="message">
-      {% for message in messages %}
-        <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+    {% for message in messages %}
+      <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        <p class="message">
           {{ message }}
         </p>
-      {% endfor %}
-    </div>
+      </div>
+    {% endfor %}
   {% endif %}
-  <h1 class="heading">Contact</h1>
+  <h1 id="contact" class="heading">Contact</h1>
   <form role="form" action="" method="post">
     {% csrf_token %}
     <div class="form">

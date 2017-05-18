@@ -13,15 +13,17 @@
 
     <p style="text-align:center;">
       {% if exppost.position %}
-        <strong>{{ exppost.position }}</strong><br>
+        <strong>{{ exppost.position }}</strong> |
       {% endif %}
 
-      {{ exppost.start_date|date:"F Y" }} -
-      {% if exppost.end_date %}
-        {{ exppost.end_date|date:"F Y" }}
-      {% else %}
-        Present
-      {% endif %}
+      <span class="workdate">
+        {{ exppost.start_date|date:"F Y" }} -
+        {% if exppost.end_date %}
+          {{ exppost.end_date|date:"F Y" }}
+        {% else %}
+          Present
+        {% endif %}
+      </div>
     </p>
 
     <p>{{ exppost.description|linebreaks }}</p>

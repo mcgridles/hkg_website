@@ -9,29 +9,38 @@
 
 {% block content %}
   <div id="bio">
-    <p>
-      <strong class="section">About</strong>
-      {{ author.bio|linebreaks }}
-    </p>
+    {{ author.bio|linebreaks }}
     <div class="wrapper">
-      <a href="{% static 'pages/files/HKG_Resume.pdf' %}" class="button">Resume</a><br>
-      <a class="github" href="https://github.com/mcgridles">
-        <img src="{% static 'pages/img/GitHub-Mark-32px.png' %}"
-             width="32"
-             height="32"
-             border="0"
-             alt="View Henry Gridley's profile on GitHub">
-      </a><br>
-      <a class="linkedin" href="https://www.linkedin.com/pub/henry-gridley/111/a22/991">
-        <img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_profile_greytxt_80x15.png"
-             width="80"
-             height="15"
-             border="0"
-             alt="View Henry Gridley's profile on LinkedIn">
-      </a>
+      <div class="circle">
+        <a class="github" href="https://github.com/mcgridles">
+          <img src="{% static 'pages/img/GitHub-Mark-120px-plus.png' %}"
+               width="64"
+               height="64"
+               border="0"
+               alt="View Henry Gridley's profile on GitHub">
+        </a>
+      </div>
+      <div class="circle">
+        <a class="resume" href="{% static 'pages/files/HKG_Resume.pdf' %}">
+          <img src="{% static 'pages/img/cv-button.png' %}"
+               width="64"
+               height="64"
+               border="0"
+               alt="View Henry Gridley's resume">
+        </a>
+      </div>
+      <div class="circle">
+        <a class="linkedin" href="https://www.linkedin.com/pub/henry-gridley/111/a22/991">
+          <img src="{% static 'pages/img/linkedin_512px.png' %}"
+               width="64"
+               height="64"
+               border="0"
+               alt="View Henry Gridley's profile on LinkedIn">
+        </a>
+      </div>
     </div>
   </div>
 
   <img id="profile" src="{{ author.picture.url }}"
-        alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:400 }};height:400px">
+        alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:450 }};height:450px">
 {% endblock %}
