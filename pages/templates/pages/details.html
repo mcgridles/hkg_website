@@ -2,7 +2,7 @@
 {% load mathfilters static %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/details.css' %}?{% now "U" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/details.css' %}" />
 {% endblock %}
 
 {% block title %}{{ exppost.title }}{% endblock %}
@@ -58,7 +58,7 @@
     </div>
   </div>
 
-  <script src="{% static 'pages/js/lightbox.js' %}?{% now "U" %}"></script>
+  <script src="{% static 'pages/js/lightbox.js' %}"></script>
 
   <!-- Journals -->
   <div id="journal">
