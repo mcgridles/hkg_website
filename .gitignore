@@ -43,3 +43,4 @@ Thumbs.db
 /media/
 access_database
 shutdown_database
+local_settings.py
