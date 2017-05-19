@@ -34,6 +34,7 @@ class ExpPost(models.Model):
 class Image(models.Model):
     post = models.ForeignKey(ExpPost, models.SET_NULL, null=True)
     title = models.CharField(max_length=50)
+    description = models.TextField(null=True)
     img = models.ImageField()
 
     def __str__(self):

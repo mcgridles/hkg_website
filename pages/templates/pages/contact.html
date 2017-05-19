@@ -1,6 +1,6 @@
 {% extends "pages/base.html" %}
 {% load static %}
-{% block title %}Contact{% endblock %}
+{% block title %}{{ block.super }} - Contact{% endblock %}
 
 {% block stylesheets %}
   <link rel="stylesheet" type="text/css" href="{% static 'pages/css/contact.css' %}"/>

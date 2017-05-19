@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'pages/css/details.css' %}" />
 {% endblock %}
 
-{% block title %}{{ exppost.title }}{% endblock %}
+{% block title %}{{ block.super }} - {{ exppost.title }}{% endblock %}
 
 {% block content %}
   <div id="top">
@@ -44,7 +44,7 @@
     <span class="close cursor" onclick="closeModal()">&times;</span>
     <div class="modal-content">
       {% for image in exppost.image_set.all %}
-        <img class="mySlides" src="{{ image.img.url }}" alt="{{ image.title }}">
+        <img class="mySlides" src="{{ image.img.url }}" alt="{{ image.description }}">
       {% endfor %}
 
       <div class="caption-container">

@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'pages/css/list_view.css' %}" />
 {% endblock %}
 
-{% block title %}Work{% endblock %}
+{% block title %}{{ block.super }} - Work{% endblock %}
 
 {% block content %}
   {% if post_list %}

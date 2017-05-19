@@ -15,14 +15,14 @@ ul.skills {
 
 @media screen and (min-width:749px) {
   #profile {
-    left: 12%;
+    left: 15%;
     position: relative;
   }
 
   div #bio {
     display: inline;
-    height: 450px;
-    left: 640px;
+    height: 400px;
+    left: 620px;
     max-width: 40%;
     overflow: auto;
     position: absolute;
@@ -42,19 +42,23 @@ ul.skills {
 }
 
 .wrapper {
+  margin-top: 30px;
   text-align: center;
 }
 
-.circle {
+.button {
   background: none;
-  border-radius: 32px;
+  display: inline-block;
+  height: 64px;
+  margin: 0px 30px 10px;
+  width: 64px;
+}
+
+.shadow {
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: inline-block;
-  height: 64px;
-  margin: -10px 10px 10px;
-  width: 64px;
 }
 
 .github,

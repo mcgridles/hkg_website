@@ -5,42 +5,45 @@
   <link rel="stylesheet" type="text/css" href="{% static 'pages/css/homepage.css' %}" />
 {% endblock %}
 
-{% block title %}Henry{% endblock %}
-
 {% block content %}
   <div id="bio">
     {{ author.bio|linebreaks }}
-    <div class="wrapper">
-      <div class="circle">
-        <a class="github" href="https://github.com/mcgridles">
-          <img src="{% static 'pages/img/GitHub-Mark-120px-plus.png' %}"
-               width="64"
-               height="64"
-               border="0"
-               alt="View Henry Gridley's profile on GitHub">
-        </a>
-      </div>
-      <div class="circle">
-        <a class="resume" href="{% static 'pages/files/HKG_Resume.pdf' %}">
-          <img src="{% static 'pages/img/cv-button.png' %}"
-               width="64"
-               height="64"
-               border="0"
-               alt="View Henry Gridley's resume">
-        </a>
-      </div>
-      <div class="circle">
-        <a class="linkedin" href="https://www.linkedin.com/pub/henry-gridley/111/a22/991">
-          <img src="{% static 'pages/img/linkedin_512px.png' %}"
-               width="64"
-               height="64"
-               border="0"
-               alt="View Henry Gridley's profile on LinkedIn">
-        </a>
-      </div>
-    </div>
   </div>
 
   <img id="profile" src="{{ author.picture.url }}"
-        alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:450 }};height:450px">
+        alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:380 }};height:380px">
+
+  <div class="wrapper">
+    <div class="button">
+      <a class="github" href="https://github.com/mcgridles">
+        <img src="{% static 'pages/img/github-words-626px.png' %}"
+             title="Henry Gridley's Github Profile"
+             width="64"
+             height="64"
+             border="0"
+             alt="View Henry Gridley's profile on GitHub">
+      </a>
+    </div>
+    <div class="button">
+      <a class="resume" href="{% static 'pages/files/HKG_Resume.pdf' %}">
+        <!-- Icon is 'Document' by Maxim Kulikov from the Noun Project -->
+        <img src="{% static 'pages/img/resume-icon.png' %}"
+             title="Henry Gridley's Resume"
+             width="64"
+             height="64"
+             border="0"
+             alt="View Henry Gridley's resume">
+      </a>
+    </div>
+    <div class="button">
+      <a class="linkedin" href="https://www.linkedin.com/pub/henry-gridley/111/a22/991">
+        <img src="{% static 'pages/img/LinkedIn-512px.png' %}"
+             title="Henry Gridley's Linkedin Profile"
+             width="64"
+             height="64"
+             border="0"
+             alt="View Henry Gridley's profile on LinkedIn">
+      </a>
+    </div>
+  </div>
 {% endblock %}
