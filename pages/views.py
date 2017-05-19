@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-import os
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
@@ -8,6 +7,7 @@ from django.core.mail import send_mail
 from django.template import Context
 from django.template.loader import get_template
 from django.contrib import messages
+from django.views.decorators.debug import sensitive_post_parameters
 
 from pages.models import Author, ExpPost, Journal
 from pages.forms import ContactForm
@@ -33,6 +33,7 @@ def homepage(request):
     context = {'author': author}
     return render(request, 'pages/homepage.html', context)
 
+@sensitive_post_parameters('contact_email')
 def contact(request):
     form_class = ContactForm
 
@@ -67,7 +68,3 @@ def contact(request):
                 return redirect('contact')
 
     return render(request, 'pages/contact.html', {'form': form_class})
-
-def contact_submit(request):
-    context = {}
-    return render(request, 'pages/contact_submit.html', context)
