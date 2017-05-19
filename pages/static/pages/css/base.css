@@ -48,6 +48,7 @@ p {
   margin: 0 auto;
   margin-bottom: 25px;
   max-width: 900px;
+  /* text-align: justify; */
 }
 
 em,
