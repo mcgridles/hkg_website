@@ -75,8 +75,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hkg_site_db',
-        'USER': 'hgridley',
-        'PASSWORD': 'hkgwebsitedb',
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
         'HOST': 'localhost',
         'PORT': '3306',
         'TIME_ZONE': 'US/Eastern',
