@@ -15,14 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from pages.views import homepage, contact, contact_submit
+from pages.views import homepage, contact
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^$', homepage, name='home'),
     url(r'^contact/$', contact, name='contact'),
-    url(r'^contact/submit/$', contact_submit, name='contact_submit'),
     url(r'^pages/', include('pages.urls')),
     url(r'^admin/', admin.site.urls),
 ]
