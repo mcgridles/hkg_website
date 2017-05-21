@@ -11,7 +11,6 @@ from django.views.decorators.debug import sensitive_post_parameters
 
 from pages.models import Author, ExpPost, Journal
 from pages.forms import ContactForm
-from hkg_website.local_settings import HKG_EMAIL
 
 class ListView(generic.ListView):
     template_name = 'pages/work.html'
@@ -59,7 +58,7 @@ def contact(request):
                 send_mail(subject,
                           content,
                           None,
-                          [HKG_EMAIL],
+                          [os.environ['HKG_EMAIL']],
                           fail_silently=False)
                 messages.success(request, 'Thank you! Your email has been sent')
                 return redirect('contact')
