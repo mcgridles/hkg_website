@@ -1,1 +1,1 @@
-web: gunicorn gettingstarted.wsgi --hkg_website.log -
+web: gunicorn hkg_website.wsgi
