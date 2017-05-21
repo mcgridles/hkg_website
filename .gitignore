@@ -48,4 +48,3 @@ local_settings.py
 /pages/migrations/
 /pages/static/pages/img/
 /pages/static/pages/files/
-Procfile
