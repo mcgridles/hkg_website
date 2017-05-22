@@ -155,4 +155,4 @@ EMAIL_PORT = 587
 
 HKG_EMAIL = os.environ['HKG_EMAIL']
 
-DATABASES['default'] = dj_database_url.config(default='postgres:///hkg_website')
+DATABASES['default'] = dj_database_url.config()
