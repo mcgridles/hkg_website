@@ -77,24 +77,25 @@ WSGI_APPLICATION = 'hkg_website.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hkg_site_db',
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'TIME_ZONE': 'US/Eastern',
-    }
-
-    #"default": {
-    #    "ENGINE": "django.db.backends.postgresql_psycopg2",
-    #    "NAME": "[YOUR_DATABASE_NAME]",
-    #    "USER": "[YOUR_USER_NAME]",
-    #    "PASSWORD": "",
-    #    "HOST": "localhost",
-    #    "PORT": "",
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'hkg_site_db',
+    #    'USER': os.environ['DATABASE_USER'],
+    #    'PASSWORD': os.environ['DATABASE_PASSWORD'],
+    #    'HOST': 'localhost',
+    #    'PORT': '3306',
+    #    'TIME_ZONE': 'US/Eastern',
     #}
+
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.environ['DATABASE_NAME'],
+        "USER": os.environ['DATABASE_USER'],
+        "PASSWORD": os.environ['DATABASE_PASSWORD'],
+        "HOST": "localhost",
+        "PORT": "5432",
+        "TIME_ZONE": "US/Eastern",
+    }
 }
 
 
