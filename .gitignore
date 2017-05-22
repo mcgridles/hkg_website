@@ -40,11 +40,6 @@ Thumbs.db
 
 # Custom files and folders #
 ############################
-/media/
 access_database
 shutdown_database
 local_settings.py
-/static/
-/pages/migrations/
-/pages/static/pages/img/
-/pages/static/pages/files/
