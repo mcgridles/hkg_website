@@ -25,7 +25,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'henrygridley.me',
-    'whispering-lake-22593.herokuapp.com',
+    'hkg-website.herokuapp.com',
 ]
 
 
