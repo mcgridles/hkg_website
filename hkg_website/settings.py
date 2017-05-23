@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mathfilters',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'hkg_website.urls'
@@ -120,8 +122,6 @@ EMAIL_PORT = 587
 HKG_EMAIL = os.environ['HKG_EMAIL']
 
 if not DEBUG:
-    INSTALLED_APPS += 'storages'
-
     STATICFILES_LOCATION = 'static'
     MEDIAFILES_LOCATION = 'media'
 
@@ -135,8 +135,6 @@ if not DEBUG:
     AWS_QUERYSTRING_AUTH = False
 
 else:
-    MIDDLEWARE += 'whitenoise.middleware.WhiteNoiseMiddleware'
-    
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
     STATIC_URL = '/static/'
 
