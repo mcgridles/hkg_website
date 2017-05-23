@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 from __future__ import unicode_literals
 import os
 import dj_database_url
-from dev_settings import *
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
+
+DEBUG = True
+
+ALLOWED_HOSTS = [
+    'henrygridley.me',
+    'hkg-website.herokuapp.com',
+]
 
 # Application definition
 
@@ -66,6 +73,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hkg_website.wsgi.application'
 
+DATABASES = {
+    'default': dj_database_url.config()
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -108,16 +119,24 @@ EMAIL_PORT = 587
 
 HKG_EMAIL = os.environ['HKG_EMAIL']
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_SECURE_URLS = False  # use http instead of https
 AWS_QUERYSTRING_AUTH = False    # don't add complex authentication-related query parameters for requests
+AWS_AUTO_CREATE_BUCKET = False
+AWS_EXPIRY = 60 * 60 * 24 * 7
 AWS_S3_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']  # Your S3 Access Key
 AWS_S3_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']  # Your S3 Secret
 AWS_STORAGE_BUCKET_NAME = 'hkg-website-assets'
-AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'  # Change to the media center you chose when creating the bucket
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+#AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'  # Change to the media center you chose when creating the bucket
+#AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_HEADERS = {
+    'Cache-Control': six.b('max-age=%d, s-maxage=%d, must-revalidate' % (
+        AWS_EXPIRY, AWS_EXPIRY))
+}
 
-STATICFILES_STORAGE = "hkg_website.s3utils.StaticS3BotoStorage"
-DEFAULT_FILE_STORAGE = "hkg_website.s3utils.MediaS3BotoStorage"
+MEDIA_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
+STATIC_URL = MEDIA_URL
 
 # the next monkey patch is necessary to allow dots in the bucket names
 import ssl
