@@ -115,8 +115,8 @@ AWS_S3_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']  # Your S3 Secret
 AWS_STORAGE_BUCKET_NAME = 'hkg-website-assets'
 AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'  # Change to the media center you chose when creating the bucket
 
-STATICFILES_STORAGE = "hkg-website-assets.s3utils.StaticS3BotoStorage"
-DEFAULT_FILE_STORAGE = "hkg-website-assets.s3utils.MediaS3BotoStorage"
+STATICFILES_STORAGE = "hkg_website.s3utils.StaticS3BotoStorage"
+DEFAULT_FILE_STORAGE = "hkg_website.s3utils.MediaS3BotoStorage"
 
 # the next monkey patch is necessary to allow dots in the bucket names
 import ssl
