@@ -139,9 +139,14 @@ EMAIL_PORT = 587
 
 HKG_EMAIL = os.environ['HKG_EMAIL']
 
-AWS_QUERYSTRING_AUTH = False
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+
+STATICFILES_STORAGE = 'hkg_website.custom_storages.StaticStorage'
+DEFAULT_FILE_STORAGE = 'hkg_website.custom_storages.MediaStorage'
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
-MEDIA_URL = 'http://s3.us-east-2.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+AWS_HEADERS = {'Cache-Control': 'max-age=86400',}
+AWS_S3_HOST = 's3.us-east-2.amazonaws.com'
+AWS_QUERYSTRING_AUTH = False
