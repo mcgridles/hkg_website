@@ -72,14 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hkg_website.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': dj_database_url.config()
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -123,6 +115,10 @@ EMAIL_PORT = 587
 HKG_EMAIL = os.environ['HKG_EMAIL']
 
 if not DEBUG:
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
+
     STATICFILES_LOCATION = 'static'
     MEDIAFILES_LOCATION = 'media'
 
@@ -144,6 +140,19 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
 
 else:
+    ALLOWED_HOSTS += '127.0.0.1'
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['DATABASE_NAME'],
+            'USER': os.environ['DATABASE_USER'],
+            'PASSWORD': os.environ['DATABASE_PASSWORD'],
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
     STATIC_URL = '/static/'
 
