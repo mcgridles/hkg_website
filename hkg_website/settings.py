@@ -7,8 +7,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
+from __future__ import unicode_literals
 import os
 import dj_database_url
+from dev_settings import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,16 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    'henrygridley.me',
-    'hkg-website.herokuapp.com',
-]
-
 
 # Application definition
 
@@ -41,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mathfilters',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -72,32 +65,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hkg_website.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.mysql',
-    #    'NAME': 'hkg_site_db',
-    #    'USER': os.environ['DATABASE_USER'],
-    #    'PASSWORD': os.environ['DATABASE_PASSWORD'],
-    #    'HOST': 'localhost',
-    #    'PORT': '3306',
-    #    'TIME_ZONE': 'US/Eastern',
-    #}
-
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['DATABASE_NAME'],
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -131,24 +98,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
@@ -159,4 +108,17 @@ EMAIL_PORT = 587
 
 HKG_EMAIL = os.environ['HKG_EMAIL']
 
-DATABASES['default'] = dj_database_url.config()
+AWS_S3_SECURE_URLS = False  # use http instead of https
+AWS_QUERYSTRING_AUTH = False    # don't add complex authentication-related query parameters for requests
+AWS_S3_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']  # Your S3 Access Key
+AWS_S3_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']  # Your S3 Secret
+AWS_STORAGE_BUCKET_NAME = 'hkg-website-assets'
+AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'  # Change to the media center you chose when creating the bucket
+
+STATICFILES_STORAGE = "hkg-website-assets.s3utils.StaticS3BotoStorage"
+DEFAULT_FILE_STORAGE = "hkg-website-assets.s3utils.MediaS3BotoStorage"
+
+# the next monkey patch is necessary to allow dots in the bucket names
+import ssl
+if hasattr(ssl, '_create_unverified_context'):
+   ssl._create_default_https_context = ssl._create_unverified_context
