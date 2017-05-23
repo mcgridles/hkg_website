@@ -11,11 +11,8 @@ import os
 import dj_database_url
 from storages.backends.s3boto import S3BotoStorage
 
-class StaticStorage(S3BotoStorage):
-    location = settings.STATICFILES_LOCATION
-
 class MediaStorage(S3BotoStorage):
-    location = settings.MEDIAFILES_LOCATION
+    location = MEDIAFILES_LOCATION
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
