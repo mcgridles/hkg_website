@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-import os
+#import os
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.utils import timezone
@@ -58,17 +58,17 @@ def contact(request):
             content = template.render(context)
             subject = 'New Site Email - ' + form_subject
 
-            #try:
-            send_mail(subject,
-                      content,
-                      None,
-                      [os.environ['HKG_EMAIL']],
-                      fail_silently=False)
-            messages.success(request, 'Thank you! Your email has been sent')
-            form_class = ContactForm
-            return render(request, 'pages/contact.html', {'form': form_class})
-            #except:
-            #    messages.error(request, 'Sorry, we were unable to send your email.')
-            #    return render(request, 'pages/contact.html', {'form': form_class})
+            try:
+                send_mail(subject,
+                          content,
+                          None,
+                          [os.environ['HKG_EMAIL']],
+                          fail_silently=False)
+                messages.success(request, 'Thank you! Your email has been sent')
+                form_class = ContactForm
+                return render(request, 'pages/contact.html', {'form': form_class})
+            except:
+                messages.error(request, 'Sorry, we were unable to send your email.')
+                return render(request, 'pages/contact.html', {'form': form_class})
 
     return render(request, 'pages/contact.html', {'form': form_class})
