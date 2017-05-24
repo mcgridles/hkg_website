@@ -33,6 +33,7 @@ def homepage(request):
     return render(request, 'pages/homepage.html', context)
 
 @sensitive_post_parameters('contact_email')
+@ensure_csrf_cookie
 def contact(request):
     form_class = ContactForm
 
@@ -54,7 +55,7 @@ def contact(request):
             }
             content = template.render(context)
             subject = 'New Site Email - ' + form_subject
-            
+
             try:
                 send_mail(subject,
                           content,
