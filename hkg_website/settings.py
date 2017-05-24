@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mathfilters',
     'storages',
+    'djangosecure',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'djangosecure.middleware.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'hkg_website.urls'
@@ -137,6 +140,10 @@ if not DEBUG:
     CONN_MAX_AGE = 3600
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     X_FRAME_OPTIONS = 'DENY'
 
 else:
@@ -162,3 +169,5 @@ else:
 
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
     MEDIA_URL = '/media/'
+
+    SECURE_SSL_REDIRECT = False
