@@ -33,6 +33,7 @@ def homepage(request):
     return render(request, 'pages/homepage.html', context)
 
 @sensitive_post_parameters('contact_email')
+@csrf_protect
 def contact(request):
     form_class = ContactForm
 
@@ -62,9 +63,10 @@ def contact(request):
                           [os.environ['HKG_EMAIL']],
                           fail_silently=False)
                 messages.success(request, 'Thank you! Your email has been sent')
-                return redirect('contact')
+                form_class = ContactForm
+                return render(request, 'pages/contact.html', {'form': form_class})
             except:
                 messages.error(request, 'Sorry, we were unable to send your email.')
-                return redirect('contact')
+                return render(request, 'pages/contact.html', {'form': form_class})
 
     return render(request, 'pages/contact.html', {'form': form_class})
