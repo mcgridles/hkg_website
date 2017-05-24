@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mathfilters',
     'storages',
-    'djangosecure',
-    'sslserver',
+    #'djangosecure',
+    #'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'djangosecure.middleware.SecurityMiddleware',
+    #'djangosecure.middleware.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'hkg_website.urls'
