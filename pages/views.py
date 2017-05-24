@@ -8,6 +8,7 @@ from django.template import Context
 from django.template.loader import get_template
 from django.contrib import messages
 from django.views.decorators.debug import sensitive_post_parameters
+from django.views.decorators.csrf import csrf_protect
 
 from pages.models import Author, ExpPost, Journal
 from pages.forms import ContactForm
