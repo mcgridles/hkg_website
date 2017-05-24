@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'www.henrygridley.me',
@@ -114,7 +114,7 @@ EMAIL_PORT = 587
 
 HKG_EMAIL = os.environ['HKG_EMAIL']
 
-if not DEBUG:
+if DEBUG:
     DATABASES = {
         'default': dj_database_url.config()
     }
