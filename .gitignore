@@ -40,6 +40,4 @@ Thumbs.db
 
 # Custom files and folders #
 ############################
-access_database
-shutdown_database
-local_settings.py
+fabfile.py
