@@ -32,14 +32,6 @@ class HomepageViewTests(TestCase):
         response = self.client.get(reverse('home'))
         self.assertContains(response, 'Henry Gridley')
 
-    def test_author_aspect_ratio(self):
-        """
-        Returns the aspect ratio of a given image.
-        """
-        create_author(name='Henry Gridley', age=20)
-        response = self.client.get(reverse('home'))
-        self.assertEqual(response.context['author'].aspect_ratio(), 1.0128755364806867)
-
 def create_post(title, post_type, days=-1, start=-1):
     """
     Creates a post with the given 'title' of the given 'post_type' and published
@@ -155,26 +147,29 @@ class ImageModelTests(TestCase):
         )
 
 class DetailViewTest(TestCase):
+    def test_detail_with_no_journals(self):
+        """
+        Posts not containing journals should not display journal section.
+        """
+        post = create_post(title='Test post', post_type='work')
+        response = self.client.get(reverse('pages:details', kwargs={'pk':post.id}))
+        self.assertNotContains(response, 'Journal')
+
     def test_detail_with_journals(self):
         """
         Posts containing journals should display journal section.
-
+        """
         post = create_post(title='Test post', post_type='work')
-        journal = Journal(post=post, title='Test journal',
-        pub_date=timezone.now(), author='Henry Gridley', text='test')
-        response = self.client.get(reverse('pages:post_details', post.id))
-        response.assertContains(response, 'Journals')
-        """
-        pass
-
-class ImageMethodTest(TestCase):
-    def test_aspect_ratio(self):
-        """
-        Returns the aspect ratio of a given image.
-        """
-        image = Image(title='Test image', img='hkg_portrait.png')
-        self.assertEqual(image.aspect_ratio(), 1.0128755364806867)
+        post.journal_set.create(title='Test journal', post=post,
+            pub_date=timezone.now(), author='Henry Gridley', text='test')
+        response = self.client.get(reverse('pages:details', kwargs={'pk':post.id}))
+        self.assertContains(response, 'Journal')
 
 class ContactPageTest(TestCase):
-    def test_contact(self):
-        pass
+    def test_base_contact_page(self):
+        """
+        Contact page should not contain any messages when first loaded.
+        """
+        response = self.client.get(reverse('contact'))
+        self.assertNotContains(response, 'Thank you!')
+        self.assertNotContains(response, 'Sorry')

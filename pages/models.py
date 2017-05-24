@@ -13,9 +13,6 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
-    def aspect_ratio(self):
-        return float(self.picture.width) / float(self.picture.height)
-
 # General post class - can be used for projects, work, volunteering, etc.
 class ExpPost(models.Model):
     title = models.CharField(max_length=255)
@@ -39,9 +36,6 @@ class Image(models.Model):
 
     def __str__(self):
         return self.title
-
-    def aspect_ratio(self):
-        return float(self.img.width) / float(self.img.height)
 
 # Journal/blog entries for a post
 class Journal(models.Model):

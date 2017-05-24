@@ -12,8 +12,7 @@
       {{ author.bio|linebreaks }}
     </div>
 
-    <img id="profile" src="{{ author.picture.url }}"
-          alt="{{ author.name }}" style="width:{{ author.aspect_ratio|mul:380 }};height:380px">
+    <img id="profile" src="{{ author.picture.url }}" alt="{{ author.name }}">
   </div>
 
   <div class="wrapper">

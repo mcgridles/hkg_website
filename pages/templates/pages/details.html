@@ -36,7 +36,6 @@
       <img class="column"
            src="{{ image.img.url }}"
            alt="{{ image.title }}"
-           style="width:{{ image.aspect_ratio|mul:256 }};height:256px"
            onclick="openModal();currentSlide({{ forloop.counter }})">
     {% endfor %}
   </div>
@@ -61,7 +60,6 @@
 
   <script src="{% static 'pages/js/lightbox.js' %}"></script>
 
-  <!-- Journals -->
   <div id="journal">
     {% if exppost.journal_set.all %}
       <h2 class="heading">Journal</h2>

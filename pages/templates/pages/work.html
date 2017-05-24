@@ -13,7 +13,7 @@
   <main class="container">
     {% for post in post_list %}
       <div class="list">
-        <a href="{% url 'pages:post_details' post.id %}">
+        <a href="{% url 'pages:details' post.id %}">
           <img class="marquee" src="{{ post.marquee.url }}">
           <span class=img_description>{{ post.title }}</span>
         </a>

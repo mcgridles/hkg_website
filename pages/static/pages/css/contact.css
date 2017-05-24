@@ -13,6 +13,7 @@ a.projects:hover {
   color: #91A8D0;
 }
 
+/* Messages */
 .success {
   background: rgb(145, 168, 208);
   background: rgba(145, 168, 208, 0.5);
@@ -39,6 +40,7 @@ a.projects:hover {
   vertical-align: middle;
 }
 
+/* Submit button */
 .button {
   margin-bottom: 15px;
 }

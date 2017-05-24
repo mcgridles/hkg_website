@@ -6,7 +6,7 @@ main.container {
   text-align: center;
 }
 
-div.list {
+.list {
   display: inline-block;
   height: 300px;
   margin: .5em;
@@ -14,8 +14,8 @@ div.list {
   vertical-align: top;
   width: 300px;
 }
-
-div.list .img_description {
+ /* Image description visible on hover */
+.list .img_description {
   color: #91A8D0;
   font-family: 'Raleway', sans-serif;
   font-size: 2em;
@@ -31,40 +31,41 @@ div.list .img_description {
   transition: opacity .4s;
 }
 
-div.list h2 a {
+.list h2 a {
   display: block;
   text-decoration: none;
   width: 100%;
 }
 
-div.list a:link {
+.list a:link {
   color: black;
 }
 
-div.list a:visited {
+.list a:visited {
   color: black;
 }
 
-div.list a:hover {
+.list a:hover {
   color: #91A8D0;
 }
 
-div.list img.marquee {
+.list .marquee {
   height: 100%;
   width: 100%;
 }
 
-div.list:hover .marquee {
+.list:hover .marquee {
   filter: grayscale(80%);
   opacity: 0.1;
   transition: opacity .4s;
 }
 
-div.list:hover .img_description {
+.list:hover .img_description {
   opacity: 1;
   visibility: visible;
 }
 
+/* 404 page */
 p.404 {
   font-size: 2em;
   margin: 10px 0px;

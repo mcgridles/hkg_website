@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'www.henrygridley.me',
@@ -140,8 +140,8 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
 
 else:
-    ALLOWED_HOSTS += '127.0.0.1'
-    
+    ALLOWED_HOSTS += '127.0.0.1',
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',

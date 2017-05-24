@@ -54,6 +54,7 @@ def contact(request):
             }
             content = template.render(context)
             subject = 'New Site Email - ' + form_subject
+            
             try:
                 send_mail(subject,
                           content,
