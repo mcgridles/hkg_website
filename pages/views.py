@@ -33,7 +33,6 @@ def homepage(request):
     return render(request, 'pages/homepage.html', context)
 
 @sensitive_post_parameters('contact_email')
-@csrf_token
 def contact(request):
     form_class = ContactForm
 
