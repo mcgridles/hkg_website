@@ -27,6 +27,15 @@
   float: right;
 }
 
+.bullets {
+  margin: 0 auto 25px;
+  max-width: 900px;
+}
+
+.bullets li {
+  margin: 5px auto;
+}
+
 .divide {
   max-width: 500px;
 }

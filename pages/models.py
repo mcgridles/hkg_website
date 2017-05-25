@@ -29,7 +29,7 @@ class ExpPost(models.Model):
 
 # Holds an image for a post
 class Image(models.Model):
-    post = models.ForeignKey(ExpPost, models.SET_NULL, null=True)
+    post = models.ForeignKey(ExpPost, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=50)
     description = models.TextField(null=True)
     img = models.ImageField()
@@ -39,7 +39,7 @@ class Image(models.Model):
 
 # Journal/blog entries for a post
 class Journal(models.Model):
-    post = models.ForeignKey(ExpPost, models.SET_NULL, null=True)
+    post = models.ForeignKey(ExpPost, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=255)
     pub_date = models.DateTimeField('date published')
     author = models.CharField(max_length=50)
@@ -47,3 +47,10 @@ class Journal(models.Model):
 
     def __str__(self):
         return self.title
+
+class KeyPoint(models.Model):
+    journal = models.ForeignKey(Journal, on_delete=models.CASCADE, null=True)
+    text = models.CharField(max_length=500, null=True)
+
+    def __str__(self):
+        return self.text

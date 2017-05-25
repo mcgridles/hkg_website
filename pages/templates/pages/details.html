@@ -68,6 +68,16 @@
           <em class="journaltitle">{{ journal.title }}</em>
           <span class="date">{{ journal.pub_date|date:"F d, Y" }}</span>
 
+          {% if journal.keypoint_set.all %}
+            <div class="bullets">
+              <ul>
+                {% for point in journal.keypoint_set.all %}
+                  <li>{{ point.text }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
           {{ journal.text|linebreaks }}
           <hr class="divide">
         </p>
