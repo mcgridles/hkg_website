@@ -37,7 +37,7 @@ def homepage(request):
 @sensitive_post_parameters('contact_email')
 @csrf_protect
 def contact(request):
-    form = ContactForm()
+    form = ContactForm
 
     if request.method == 'POST':
         form = form(data=request.POST)
