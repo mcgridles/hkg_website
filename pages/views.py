@@ -65,6 +65,7 @@ def contact(request):
                           [os.environ['HKG_EMAIL']],
                           fail_silently=False)
                 messages.success(request, 'Thank you! Your email has been sent')
+                form = ContactForm
                 return render(request, 'pages/contact.html', {'form': form})
             except:
                 messages.error(request, 'Sorry, we were unable to send your email.')
