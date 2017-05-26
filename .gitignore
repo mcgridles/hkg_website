@@ -40,7 +40,7 @@ Thumbs.db
 
 # Custom files and folders #
 ############################
-fabfile.py
 static/
 pages/static/pages/files
 pages/static/pages/img
+push_database
