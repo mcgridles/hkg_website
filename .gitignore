@@ -40,7 +40,8 @@ Thumbs.db
 
 # Custom files and folders #
 ############################
-static/
+/static/
+/media/
 pages/static/pages/files
 pages/static/pages/img
 push_database
