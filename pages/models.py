@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.urls import reverse
+from django.contrib.sitemaps import ping_google
 
 # Holds information for the AboutMe page
 class Author(models.Model):
@@ -26,6 +28,18 @@ class ExpPost(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('pages:details', kwargs={'pk':self.id})
+
+    def save(self, force_insert=False, force_update=False):
+        super(ExpPost, self).save(force_insert, force_update)
+        try:
+            ping_google()
+        except Exception:
+            # Bare 'except' because we could get a variety
+            # of HTTP-related exceptions.
+            pass
 
 # Holds an image for a post
 class Image(models.Model):
