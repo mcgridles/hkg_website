@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
     'mathfilters',
     'storages',
     #'djangosecure',
@@ -115,6 +117,8 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
 HKG_EMAIL = os.environ['HKG_EMAIL']
+
+SITE_ID = 1
 
 if not DEBUG:
     DATABASES = {
