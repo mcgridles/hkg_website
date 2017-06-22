@@ -18,12 +18,21 @@ from django.contrib import admin
 from pages.views import homepage, contact
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from sitemap import StaticViewSitemap, ExpPostSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'post': ExpPostSitemap,
+}
 
 urlpatterns = [
     url(r'^$', homepage, name='home'),
     url(r'^contact/$', contact, name='contact'),
     url(r'^pages/', include('pages.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap')
 ]
 
 if settings.DEBUG:
