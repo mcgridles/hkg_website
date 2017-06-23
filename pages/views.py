@@ -13,9 +13,13 @@ from django.views.decorators.csrf import csrf_protect
 
 from pages.models import Author, ExpPost, Journal
 from pages.forms import ContactForm
+from hkg_website.settings import DEBUG
 
 class ListView(generic.ListView):
-    template_name = 'pages/work.html'
+    if DEBUG:
+        template_name = 'pages/work.html'
+    else:
+        template_name = 'pages/work-min.html'
     context_object_name = 'post_list'
 
     def get_queryset(self):
@@ -27,12 +31,19 @@ class ListView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = ExpPost
-    template_name = 'pages/details.html'
+    if DEBUG:
+        template_name = 'pages/details.html'
+    else:
+        template_name = 'pages/details-min.html'
 
 def homepage(request):
     author = get_object_or_404(Author)
     context = {'author': author}
-    return render(request, 'pages/homepage.html', context)
+
+    if DEBUG:
+        return render(request, 'pages/homepage.html', context)
+    else:
+        return render(request, 'pages/homepage-min.html', context)
 
 @sensitive_post_parameters('contact_email')
 @csrf_protect
@@ -66,9 +77,16 @@ def contact(request):
                           fail_silently=False)
                 messages.success(request, 'Thank you! Your email has been sent')
                 form = ContactForm
-                return render(request, 'pages/contact.html', {'form': form})
+
+                if DEBUG:
+                    return render(request, 'pages/contact.html', {'form': form})
+                else:
+                    return render(request, 'pages/contact-min.html', {'form': form})
             except:
                 messages.error(request, 'Sorry, we were unable to send your email.')
                 return redirect('contact')
 
-    return render(request, 'pages/contact.html', {'form': form})
+    if DEBUG:
+        return render(request, 'pages/contact.html', {'form': form})
+    else:
+        return render(request, 'pages/contact-min.html', {'form': form})
