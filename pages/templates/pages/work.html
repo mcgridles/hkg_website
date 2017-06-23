@@ -3,7 +3,7 @@
 {% load static from staticfiles %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/list_view.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/list_view-min.css' %}" />
 {% endblock %}
 
 {% block title %}{{ block.super }} - Work{% endblock %}
@@ -23,6 +23,6 @@
     </div>
   </main>
   {% else %}
-    <p class="404">No posts were found.</p>
+    <p class="not-found">No posts were found.</p>
   {% endif %}
 {% endblock %}

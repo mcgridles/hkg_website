@@ -72,7 +72,7 @@ main.container {
 }
 
 /* 404 page */
-p.404 {
+p.not-found {
   font-size: 2em;
   margin: 10px 0px;
   padding-top: 0px;
