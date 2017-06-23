@@ -78,15 +78,9 @@ def contact(request):
                 messages.success(request, 'Thank you! Your email has been sent')
                 form = ContactForm
 
-                if DEBUG:
-                    return render(request, 'pages/contact.html', {'form': form})
-                else:
-                    return render(request, 'pages/contact.html', {'form': form})
+                return render(request, 'pages/contact.html', {'form': form})
             except:
                 messages.error(request, 'Sorry, we were unable to send your email.')
                 return redirect('contact')
 
-    if DEBUG:
-        return render(request, 'pages/contact.html', {'form': form})
-    else:
-        return render(request, 'pages/contact.html', {'form': form})
+    return render(request, 'pages/contact.html', {'form': form})
