@@ -81,7 +81,7 @@ def contact(request):
                 if DEBUG:
                     return render(request, 'pages/contact.html', {'form': form})
                 else:
-                    return render(request, 'pages/contact-min.html', {'form': form})
+                    return render(request, 'pages/contact.html', {'form': form})
             except:
                 messages.error(request, 'Sorry, we were unable to send your email.')
                 return redirect('contact')
@@ -89,4 +89,4 @@ def contact(request):
     if DEBUG:
         return render(request, 'pages/contact.html', {'form': form})
     else:
-        return render(request, 'pages/contact-min.html', {'form': form})
+        return render(request, 'pages/contact.html', {'form': form})
