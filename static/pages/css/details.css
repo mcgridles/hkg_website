@@ -1,34 +1,42 @@
-body.modal-open {
-  overflow: hidden;
-}
-
 #top p {
   font-family: 'Playfair Display', serif;
   font-size: 1em;
   margin-bottom: 35px;
 }
 
-span.workdate {
+.workdate {
   font-family: 'Raleway', sans-serif;
 }
 
-img:not(#logo) {
+/* Images in image row */
+.column{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
+  height: auto;
+  max-width: 30%;
 }
 
-em.journaltitle {
+.journaltitle {
   font-size: 1.75em;
   font-weight: bold;
 }
 
-span.date {
+.date {
   float: right;
 }
 
-hr.divide {
+.bullets {
+  margin: 0 auto 25px;
+  max-width: 900px;
+}
+
+.bullets li {
+  margin: 5px auto;
+}
+
+.divide {
   max-width: 500px;
 }
 
@@ -43,7 +51,7 @@ a.next:not(.active) {
   padding: 10px 0px;
   margin-left: 0px;
   margin-right: 0px;
-  overflow: scroll;
+  overflow: auto;
   text-align: center;
   white-space:nowrap;
   width: 100%;
@@ -67,13 +75,17 @@ a.next:not(.active) {
   z-index: 1;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 /* Modal Content (Image) */
 .modal-content {
   margin: 0 auto 75px;
   max-width: 1200px;
   position: relative;
   vertical-align: middle;
-  width: 90%;
+  max-width: 90%;
 }
 
 .close {
@@ -128,10 +140,11 @@ a.next:visited {
   color: white;
 }
 
+/* Modal image */
 .mySlides {
   display: none;
   margin: 0 auto;
-  width: 100%;
+  max-width: 100%;
 }
 
 .caption-container {

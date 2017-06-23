@@ -1,47 +1,47 @@
-ul.skills {
-  list-style-type: none;
-}
+/* Mobile first design */
 
-.section {
-  font-size: 1.5em;
-}
-
+/* Profile image and bio */
 #profile {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: block;
+  height: auto;
+  margin: auto;
+  width: 42%;
   z-index: 0
 }
 
-@media screen and (min-width:749px) {
-  #profile {
-    left: 15%;
-    position: relative;
+#bio {
+  display: block;
+  text-align: center;
+}
+
+/* Styles for larger screens */
+@media only screen and (min-width:768px) {
+  .container {
+    display: block;
+    margin: 0 auto;
+    max-width: 900px;
   }
 
-  div #bio {
+  #profile {
+    float: left;
+  }
+
+  #bio {
     display: inline;
+    float: right;
     height: 400px;
-    left: 620px;
-    max-width: 40%;
+    max-width: 53%;
     overflow: auto;
-    position: absolute;
+    text-align: left;
   }
 }
 
-@media screen and (max-width:750px) {
-  #profile {
-    display: block;
-    margin: auto;
-  }
-
-  div #bio {
-    display: block;
-    text-align: center;
-  }
-}
-
+/* Github, Linkedin, Resume buttons */
 .wrapper {
+  clear: both;
   margin-top: 30px;
   text-align: center;
 }
@@ -66,4 +66,10 @@ ul.skills {
 .linkedin {
   cursor: pointer;
   margin: 0;
+}
+
+.footer {
+  margin-top: 20px;
+  opacity: 0.5;
+  text-align: center;
 }
