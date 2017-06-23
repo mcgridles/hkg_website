@@ -2,18 +2,18 @@
   margin: 40px auto 20px auto;
 }
 
-main.container {
+.container {
   text-align: center;
+  width: 100%;
 }
 
 .block {
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 665px;
 }
 
 .list {
   display: inline-block;
-  float: left;
   height: 300px;
   margin: 1em;
   position: relative;
@@ -80,4 +80,16 @@ p.not-found {
   position: absolute;
   text-align: center;
   top: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    float: left;
+  }
+}
+
+@media screen and (min-width: 1012px) {
+  .block {
+    max-width: 1000px;
+  }
 }
