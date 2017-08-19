@@ -1,0 +1,29 @@
+{% extends "pages/base-min.html" %}
+{% load static from staticfiles %}
+{% block title %}{{ block.super }} - Contact{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/contact-min.css' %}" />
+{% endblock %}
+
+{% block content %}
+  {% if messages %}
+    {% for message in messages %}
+      <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        <p class="message">
+          {{ message }}
+        </p>
+      </div>
+    {% endfor %}
+  {% endif %}
+  <h1 id="contact" class="heading">Contact</h1>
+  <form role="form" action="" method="post">
+    {% csrf_token %}
+    <div class="form">
+      {{ form.as_p }}
+    </div>
+    <div class="wrapper">
+      <button class="button" type="submit">Submit</button>
+    </div>
+  </form>
+{% endblock %}

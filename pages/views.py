@@ -36,14 +36,26 @@ class DetailView(generic.DetailView):
     else:
         template_name = 'pages/details-min.html'
 
+    def get_object(self):
+        self.object = super(DetailView, self).get_object()
+        return self.object
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        try:
+            context['image'] = self.object.image_set.all()[0]
+        except IndexError:
+            context['image'] = None
+        return context
+
 def homepage(request):
     author = get_object_or_404(Author)
     context = {'author': author}
 
     if DEBUG:
-        return render(request, 'pages/homepage.html', context)
+        return render(request, 'pages/home.html', context)
     else:
-        return render(request, 'pages/homepage-min.html', context)
+        return render(request, 'pages/home-min.html', context)
 
 @sensitive_post_parameters('contact_email')
 @csrf_protect

@@ -1,28 +1,39 @@
 <!-- work.html -->
-{% extends "pages/base-min.html" %}
+{% extends "pages/base.html" %}
 {% load static from staticfiles %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/list_view-min.css' %}" />
+  <link href="{% static 'columns/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'pages/css/work.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{ block.super }} - Work{% endblock %}
+{% block title %}{{ block.super }}{% endblock %}
 
 {% block content %}
-  {% if post_list %}
   <div class="container">
+    <h1 class="my-4 block heading">Work + Projects</h1>
+
+    {% if post_list %}
     <div class="block">
       {% for post in post_list %}
         <div class="list">
           <a href="{% url 'pages:details' post.id %}">
-            <img class="marquee" src="{{ post.marquee.url }}">
+            <img class="thumbnail" src="{{ post.thumbnail.url }}">
             <span class=img_description>{{ post.title }}</span>
           </a>
         </div>
       {% endfor %}
     </div>
-  </main>
-  {% else %}
-    <p class="not-found">No posts were found.</p>
-  {% endif %}
+
+    {% else %}
+      <p class="not-found">No posts were found.</p>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Bootstrap core JavaScript -->
+  <script src="{% static 'columns/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'columns/vendor/popper/popper.min.js' %}"></script>
+  <script src="{% static 'columns/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 {% endblock %}

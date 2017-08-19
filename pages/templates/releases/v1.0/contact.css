@@ -1,0 +1,46 @@
+#contact {
+  margin-bottom: 35px;
+}
+
+.form,
+.wrapper {
+  text-align: center;
+}
+
+a.projects:link,
+a.projects:visited,
+a.projects:hover {
+  color: #91A8D0;
+}
+
+/* Messages */
+.success {
+  background: rgb(145, 168, 208);
+  background: rgba(145, 168, 208, 0.5);
+  border-radius: 5px;
+  display: table;
+  height: 30px;
+  margin: 0 auto;
+  width: 40%;
+}
+
+.error {
+  background: rgb(247, 202, 201);
+  background: rgba(247, 202, 201, 1);
+  border-radius: 5px;
+  display: table;
+  height: 30px;
+  margin: 0 auto;
+  width: 40%;
+}
+
+.message {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Submit button */
+.button {
+  margin-bottom: 15px;
+}

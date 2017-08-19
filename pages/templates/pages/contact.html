@@ -1,29 +1,53 @@
-{% extends "pages/base-min.html" %}
+{% extends "pages/base.html" %}
 {% load static from staticfiles %}
-{% block title %}{{ block.super }} - Contact{% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/contact-min.css' %}" />
+  <link href="{% static 'portfolio/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'pages/css/contact.css' %}" rel="stylesheet">
 {% endblock %}
 
+{% block title %}{{ block.super }}{% endblock %}
+
 {% block content %}
-  {% if messages %}
-    {% for message in messages %}
-      <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-        <p class="message">
-          {{ message }}
-        </p>
+  <!-- Page Content -->
+  <div class="container">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div {% if message.tags == "error" %} class="alert alert-danger"
+        {% else %} class="alert alert-{{ message.tags }}" {% endif %} style="text-align: center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message.tags|title }}!</strong> {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">Contact <small>email</small></h1>
+
+    <div class="row">
+      <div class="col-12">
+        <form role="form" action="{% url 'contact' %}" method="post" class="form-signin">
+          {% csrf_token %}
+
+          {{ form.contact_name }}
+          {{ form.contact_email }}
+          {{ form.subject }}
+          {{ form.content }}
+
+          <button class="btn btn-default pull-right" type="submit">Submit</button>
+        </form>
       </div>
-    {% endfor %}
-  {% endif %}
-  <h1 id="contact" class="heading">Contact</h1>
-  <form role="form" action="" method="post">
-    {% csrf_token %}
-    <div class="form">
-      {{ form.as_p }}
     </div>
-    <div class="wrapper">
-      <button class="button" type="submit">Submit</button>
-    </div>
-  </form>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+{% endblock %}
+
+{% block scripts %}
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'portfolio/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'portfolio/vendor/popper/popper.min.js' %}"></script>
+  <script src="{% static 'portfolio/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 {% endblock %}

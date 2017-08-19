@@ -1,0 +1,24 @@
+.about {
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+#about {
+  padding-top: 40px;
+}
+
+.btn-default {
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.btn-default:focus, .btn-default:hover {
+    color: #000;
+    border: 1px solid #007bff;
+    outline: 0;
+    background-color: #007bff;
+}
+
+a {
+  color: #007bff;
+}

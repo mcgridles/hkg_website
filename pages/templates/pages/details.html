@@ -1,87 +1,93 @@
-{% extends "pages/base-min.html" %}
+<!-- details.html -->
+{% extends "pages/base.html" %}
 {% load static from staticfiles %}
-{% load mathfilters %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" type="text/css" href="{% static 'pages/css/details-min.css' %}" />
+  <link href="{% static 'portfolio/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'pages/css/details.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{ block.super }} - {{ exppost.title }}{% endblock %}
+{% block title %}{{ block.super }}{% endblock %}
 
 {% block content %}
-  <div id="top">
-    <h1 class="heading">{{ exppost.title }}</h1>
+  <!-- Page Content -->
+  <div class="container">
 
-    <p style="text-align:center;">
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">{{ exppost.title }}
       {% if exppost.position %}
-        <strong>{{ exppost.position }}</strong> |
+        <small>{{ exppost.position }}</small>
       {% endif %}
-
-      <span class="workdate">
-        {{ exppost.start_date|date:"F Y" }} -
-        {% if exppost.end_date %}
-          {{ exppost.end_date|date:"F Y" }}
-        {% else %}
-          Present
-        {% endif %}
-      </div>
-    </p>
-
-    <p>{{ exppost.description|linebreaks }}</p>
-  </div>
-
-  <!-- Lightbox -->
-  <div class="row">
-    {% for image in exppost.image_set.all %}
-      <img class="column"
-           src="{{ image.img.url }}"
-           alt="{{ image.title }}"
-           onclick="openModal();currentSlide({{ forloop.counter }})">
-    {% endfor %}
-  </div>
-
-  <div id="myModal" class="modal">
-    <span class="close cursor" onclick="closeModal()">&times;</span>
-    <div class="modal-content">
-      {% for image in exppost.image_set.all %}
-        <img class="mySlides" src="{{ image.img.url }}" alt="{{ image.description }}">
-      {% endfor %}
-
-      <div class="caption-container">
-        <p id="caption"></p>
-      </div>
-
-      {% if exppost.image_set.all|length > 1 %}
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </h1>
+    <div class="workdate">
+      {{ exppost.start_date|date:"F Y" }} -
+      {% if exppost.end_date %}
+        {{ exppost.end_date|date:"F Y" }}
+      {% else %}
+        Present
       {% endif %}
     </div>
-  </div>
 
-  <script src="{% static 'pages/js/lightbox-min.js' %}"></script>
+    <!-- Portfolio Item Row -->
+    <div class="row">
 
-  <div id="journal">
-    {% if exppost.journal_set.all %}
-      <h2 class="heading">Journal</h2>
-      {% for journal in exppost.journal_set.all|dictsortreversed:'pub_date' %}
-        <p>
-          <em class="journaltitle">{{ journal.title }}</em>
-          <span class="date">{{ journal.pub_date|date:"F d, Y" }}</span>
+      <div class="col-md-8">
+        <img id="main-img" class="img-fluid" src="{{ image.img.url }}" alt="">
+      </div>
 
-          {% if journal.keypoint_set.all %}
-            <div class="bullets">
-              <ul>
-                {% for point in journal.keypoint_set.all %}
-                  <li>{{ point.text }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
+      <div class="col-md-4">
+        <h3 class="my-3">Description</h3>
+        <p>{{ exppost.description|linebreaks }}</p>
+      </div>
 
-          {{ journal.text|linebreaks }}
-          <hr class="divide">
-        </p>
+    </div>
+    <!-- /.row -->
+
+    <!-- Images Row -->
+    <h3 class="my-4 img-heading">Images</h3>
+
+    <div class="row imgs">
+      {% for image in exppost.image_set.all %}
+        <div class="col-md-3 col-sm-6 mb-4 img">
+          <img class="img-fluid gallery" src="{{ image.img.url }}" alt="">
+        </div>
       {% endfor %}
-    {% endif %}
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h3 class="my-3">Details</h3>
+        <p>{{ exppost.details|linebreaks }}</p>
+      </div>
+    </div>
+    <!-- /.row -->
+
   </div>
+  <!-- /.container -->
+{% endblock %}
+
+{% block scripts %}
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'portfolio/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'portfolio/vendor/popper/popper.min.js' %}"></script>
+  <script src="{% static 'portfolio/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+  <script>
+    $(function() {
+      var gallery_images = $(" .gallery ");
+      var main_image = $(" #main-img ")[0];
+
+      function makeMain(img) {
+        main_image.src = gallery_images[img].src;
+      }
+
+      for ( var i = 0; i < gallery_images.length; i++ ) {
+        gallery_images[i].onclick = (function(img_num) {
+          return function() {
+            makeMain(img_num);
+          }
+        })(i);
+      }
+    });
+  </script>
 {% endblock %}
