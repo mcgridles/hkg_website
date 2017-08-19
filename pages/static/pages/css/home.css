@@ -8,17 +8,17 @@
 }
 
 .btn-default {
-  color: #007bff;
-  border: 1px solid #007bff;
+  color: #6db3ff;
+  border: 1px solid #6db3ff;
 }
 
 .btn-default:focus, .btn-default:hover {
     color: #000;
-    border: 1px solid #007bff;
+    border: 1px solid #6db3ff;
     outline: 0;
-    background-color: #007bff;
+    background-color: #6db3ff;
 }
 
 a {
-  color: #007bff;
+  color: #6db3ff;
 }
