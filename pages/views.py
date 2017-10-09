@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 
-from pages.models import Author, ExpPost, Journal
+from pages.models import Author, ExpPost
 from pages.forms import ContactForm
 from hkg_website.settings import DEBUG
 
