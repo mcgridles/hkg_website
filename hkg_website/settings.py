@@ -20,7 +20,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
-ADMINS = [('Henry Gridley', os.environ['HKG_EMAIL'])]
+ADMINS = (
+    ('Henry Gridley', os.environ['HKG_EMAIL']),
+)
 
 # Application definition
 
