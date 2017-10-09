@@ -20,6 +20,11 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
+ALLOWED_HOSTS = [
+    'www.henrygridley.me',
+    'hkg-website.herokuapp.com',
+]
+
 ADMINS = (
     ('Henry Gridley', os.environ['HKG_EMAIL']),
 )
