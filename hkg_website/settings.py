@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'mathfilters',
     'storages',
-    #'djangosecure',
-    #'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'djangosecure.middleware.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'hkg_website.urls'
@@ -146,8 +143,6 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
     SECURE_SSL_REDIRECT = True # [1]
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    #SECURE_HSTS_SECONDS = 31536000
-    #SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 else:
     ALLOWED_HOSTS += '127.0.0.1',
