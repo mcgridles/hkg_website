@@ -8,3 +8,7 @@
   background-color: #007bff;
   color: #fff;
 }
+
+.alert {
+  margin-top: 30px !important;
+}
