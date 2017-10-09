@@ -20,11 +20,6 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    'www.henrygridley.me',
-    'hkg-website.herokuapp.com',
-]
-
 ADMINS = [('Henry Gridley', os.environ['HKG_EMAIL'])]
 
 # Application definition
@@ -117,7 +112,12 @@ HKG_EMAIL = os.environ['HKG_EMAIL']
 
 SITE_ID = 1
 
-if not DEBUG:
+if DEBUG == False:
+    ALLOWED_HOSTS = [
+        'www.henrygridley.me',
+        'hkg-website.herokuapp.com',
+    ]
+
     DATABASES = {
         'default': dj_database_url.config()
     }
@@ -145,7 +145,9 @@ if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 else:
-    ALLOWED_HOSTS += '127.0.0.1',
+    ALLOWED_HOSTS = [
+        '127.0.0.1',
+    ]
 
     DATABASES = {
         'default': {
