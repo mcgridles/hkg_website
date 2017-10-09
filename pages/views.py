@@ -81,18 +81,18 @@ def contact(request):
             content = template.render(context)
             subject = 'New Site Email - ' + form_subject
 
-            try:
-                send_mail(subject,
-                          content,
-                          None,
-                          [os.environ['HKG_EMAIL']],
-                          fail_silently=False)
-                messages.success(request, 'Thank you! Your email has been sent')
-                form = ContactForm
+            #try:
+            send_mail(subject,
+                      content,
+                      None,
+                      [os.environ['HKG_EMAIL']],
+                      fail_silently=False)
+            messages.success(request, 'Thank you! Your email has been sent')
+            form = ContactForm
 
-                return render(request, 'pages/contact.html', {'form': form})
-            except:
-                messages.error(request, 'Sorry, we were unable to send your email.')
-                return redirect('contact')
+            return render(request, 'pages/contact.html', {'form': form})
+            #except:
+            #    messages.error(request, 'Sorry, we were unable to send your email.')
+            #    return redirect('contact')
 
     return render(request, 'pages/contact.html', {'form': form})
