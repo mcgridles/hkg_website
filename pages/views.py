@@ -16,10 +16,7 @@ from pages.forms import ContactForm
 from hkg_website.settings import DEBUG
 
 class ListView(generic.ListView):
-    if DEBUG:
-        template_name = 'pages/work.html'
-    else:
-        template_name = 'pages/work-min.html'
+    template_name = 'pages/work.html'
     context_object_name = 'post_list'
 
     def get_queryset(self):
@@ -31,10 +28,7 @@ class ListView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = ExpPost
-    if DEBUG:
-        template_name = 'pages/details.html'
-    else:
-        template_name = 'pages/details-min.html'
+    template_name = 'pages/details.html'
 
     def get_object(self):
         self.object = super(DetailView, self).get_object()
@@ -52,10 +46,7 @@ def homepage(request):
     author = get_object_or_404(Author)
     context = {'author': author}
 
-    if DEBUG:
-        return render(request, 'pages/home.html', context)
-    else:
-        return render(request, 'pages/home-min.html', context)
+    return render(request, 'pages/home.html', context)
 
 @sensitive_post_parameters('contact_email')
 @csrf_protect
