@@ -44,15 +44,17 @@
     <!-- /.row -->
 
     <!-- Images Row -->
-    <h3 class="my-4 img-heading">Images</h3>
+    {% if exppost.image_set.all %}
+      <h3 class="my-4 img-heading">Images</h3>
 
-    <div class="row imgs">
-      {% for image in exppost.image_set.all %}
-        <div class="col-md-3 col-sm-6 mb-4 img">
-          <img class="img-fluid gallery" src="{{ image.img.url }}" alt="">
-        </div>
-      {% endfor %}
-    </div>
+      <div class="row imgs">
+        {% for image in exppost.image_set.all %}
+          <div class="col-md-3 col-sm-6 mb-4 img">
+            <img class="img-fluid gallery" src="{{ image.img.url }}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
     <!-- /.row -->
 
   </div>

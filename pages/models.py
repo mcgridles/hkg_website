@@ -45,21 +45,3 @@ class ExpPost(models.Model):
 class Image(models.Model):
     post = models.ForeignKey(ExpPost, on_delete=models.CASCADE, null=True)
     img = models.ImageField()
-
-# Journal/blog entries for a post
-class Journal(models.Model):
-    post = models.ForeignKey(ExpPost, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=255)
-    pub_date = models.DateTimeField('date published')
-    author = models.CharField(max_length=50)
-    text = models.TextField(null=True)
-
-    def __str__(self):
-        return self.title
-
-class KeyPoint(models.Model):
-    journal = models.ForeignKey(Journal, on_delete=models.CASCADE, null=True)
-    text = models.CharField(max_length=500, null=True)
-
-    def __str__(self):
-        return self.text

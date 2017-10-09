@@ -6,6 +6,7 @@
   margin-bottom: 1.5rem;
 }
 
+/* aspect ratio: 0.6 */
 #main-img {
   max-height: 500px;
 }
@@ -17,11 +18,12 @@
 .imgs {
   flex-wrap: nowrap;
   overflow: scroll;
+  padding-left: 15px;
 }
 
 .img {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .gallery {

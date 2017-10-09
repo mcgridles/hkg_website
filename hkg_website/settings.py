@@ -20,12 +20,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    'www.henrygridley.me',
-    'hkg-website.herokuapp.com',
-]
-
-ADMINS = [('Henry Gridley', os.environ['HKG_EMAIL'])]
+ADMINS = (
+    ('Henry Gridley', os.environ['HKG_EMAIL']),
+)
 
 # Application definition
 
@@ -41,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'mathfilters',
     'storages',
-    #'djangosecure',
-    #'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +48,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'djangosecure.middleware.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'hkg_website.urls'
@@ -120,7 +114,12 @@ HKG_EMAIL = os.environ['HKG_EMAIL']
 
 SITE_ID = 1
 
-if not DEBUG:
+if DEBUG == False:
+    ALLOWED_HOSTS = [
+        'www.henrygridley.me',
+        'hkg-website.herokuapp.com',
+    ]
+
     DATABASES = {
         'default': dj_database_url.config()
     }
@@ -146,11 +145,11 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
     SECURE_SSL_REDIRECT = True # [1]
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    #SECURE_HSTS_SECONDS = 31536000
-    #SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 else:
-    ALLOWED_HOSTS += '127.0.0.1',
+    ALLOWED_HOSTS = [
+        '127.0.0.1',
+    ]
 
     DATABASES = {
         'default': {

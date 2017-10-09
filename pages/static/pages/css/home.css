@@ -1,20 +1,40 @@
+a {
+  color: #6db3ff;
+}
+
+@media (min-width: 992px) {
+  #mainNav.navbar-shrink {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .nav-link {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.btn-default {
+  color: #6db3ff;
+  border: 1px solid #2b83e2;
+}
+
+.btn-default:focus, .btn-default:hover {
+  color: #000;
+  border: 1px solid #2b83e2;
+  outline: 0;
+  background-color: #2b83e2;
+}
+
 .about {
   padding-top: 150px;
   padding-bottom: 170px;
 }
 
-.btn-default {
-  color: #6db3ff;
-  border: 1px solid #6db3ff;
-}
-
-.btn-default:focus, .btn-default:hover {
-    color: #000;
-    border: 1px solid #6db3ff;
-    outline: 0;
-    background-color: #6db3ff;
-}
-
-a {
-  color: #6db3ff;
+@media (min-width: 992px) {
+  #contact {
+    margin-top: 10px;
+    padding-top: 180px;
+    padding-bottom: 180px;
+  }
 }
