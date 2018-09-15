@@ -37,6 +37,18 @@
 
       <div class="col-md-4">
         <h3 class="my-3">Description</h3>
+        {% if exppost.project_link %}
+            <h6 class="links">
+                <a href="{{ exppost.project_link }}">Website</a>
+                {% if exppost.repo_link %}
+                    | <a href="{{ exppost.repo_link }}">Repository</a>
+                {% endif %}
+            </h6>
+        {% elif exppost.repo_link %}
+            <h6 class="links">
+                <a href="{{ exppost.repo_link }}">Repository</a>
+            </h6>
+        {% endif %}
         <p>{{ exppost.description|linebreaks }}</p>
       </div>
 
@@ -44,7 +56,7 @@
     <!-- /.row -->
 
     <!-- Images Row -->
-    {% if exppost.image_set.all %}
+    {% if exppost.image_set.all|length > 1 %}
       <h3 class="my-4 img-heading">Images</h3>
 
       <div class="row imgs">
@@ -54,6 +66,10 @@
           </div>
         {% endfor %}
       </div>
+    {% else %}
+        <!-- Empty block to replace image row -->
+        <h3></h3>
+        <div></div>
     {% endif %}
     <!-- /.row -->
 

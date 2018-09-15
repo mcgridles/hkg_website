@@ -9,7 +9,7 @@ class ImageInline(admin.StackedInline):
 
 class ExpPostAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,  {'fields': ['title', 'position', 'description', 'thumbnail']}),
+        (None,  {'fields': ['title', 'position', 'description', 'thumbnail', 'project_link', 'repo_link']}),
         ('Date information', {'fields': ['start_date', 'end_date']}),
         ('Admin information', {'fields': ['post_type', 'pub_date']}),
     ]

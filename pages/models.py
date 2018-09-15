@@ -25,6 +25,8 @@ class ExpPost(models.Model):
     end_date = models.DateField('date work ended', null=True, blank=True)
     description = models.TextField()
     thumbnail = models.ImageField(null=True)
+    project_link = models.CharField(max_length=1000, null=True, blank=True)
+    repo_link = models.CharField(max_length=1000, null=True, blank=True)
 
     def __str__(self):
         return self.title
