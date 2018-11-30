@@ -7,7 +7,6 @@
 *.o
 *.so
 *.pyc
-*.sh
 
 # Packages #
 ############
@@ -37,6 +36,7 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+.idea/
 
 # Custom files and folders #
 ############################
