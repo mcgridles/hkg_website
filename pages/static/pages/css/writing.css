@@ -49,6 +49,11 @@ p.intro {
   font-size: 1.25em;
 }
 
+p.update {
+  font-family: Cabin,'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 0.85em;
+}
+
 p.writing {
   font-family: Cabin,'Helvetica Neue',Helvetica,Arial,sans-serif;
   font-size: 1.1em;
