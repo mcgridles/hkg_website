@@ -47,6 +47,9 @@ def homepage(request):
 
     return render(request, 'pages/home.min.html', context)
 
+def writing(request):
+    return render(request, 'pages/writing.min.html')
+
 @sensitive_post_parameters('contact_email')
 @csrf_protect
 def contact(request):
